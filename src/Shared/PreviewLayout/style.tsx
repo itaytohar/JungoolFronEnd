@@ -9,8 +9,9 @@ export const StyledLayout = styled.div<{ backgroundColor: string }>`
 `;
 
 export const Divider = styled.div`
-  height: 30px;
+  height: 5%;
   background-color: ${({ theme }) => theme.colors.divider};
+  margin-block-end: 12px;
 `;
 
 export const StyledHeaderWrapper = styled.div`
@@ -26,7 +27,7 @@ export const StyledHeader = styled.h1`
 `;
 
 export const BodyContainer = styled.div`
-  height: 100%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;

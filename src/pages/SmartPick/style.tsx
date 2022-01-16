@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const StyledPickUpSection = styled.div`
-  background-color: white;
-  height: 112px;
-  width: 90%;
+export const OrdersContainer = styled.div`
+  width: 100%;
+  margin-block-start: 12px;
+  overflow-y: auto;
 `;

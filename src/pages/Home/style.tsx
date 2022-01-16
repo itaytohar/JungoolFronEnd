@@ -7,12 +7,7 @@ export const MainLayout = styled.div`
   flex-direction: column;
 `;
 
-export const LoaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
+
 
 export const HeaderContainer = styled.div<{ backgroundColor: string }>`
   display: flex;

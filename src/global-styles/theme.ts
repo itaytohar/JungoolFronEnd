@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
     smartPick: {
-      backgroundColor: "white",
+      backgroundColor: "#F1F9FF",
       headerColor: "#2699FB",
       contentColor: "#2699FB",
       graphColors: ["#2699FB", "#BCE0FD"],
