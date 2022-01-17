@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   IconsWrapper,
   StyledDetail,
@@ -27,6 +28,7 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
   adress,
   onClickChecked,
 }) => {
+  const navigate = useNavigate();
   return (
     <StyledPaper>
       <Wrapper>
@@ -47,7 +49,7 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
         </StyledDetailsContainer>
         <IconsWrapper>
           <StyledIcon onClick={onClickChecked} src={checkedIcon} />
-          <StyledIcon src={personIcon} />
+          <StyledIcon src={personIcon} onClick={() => navigate("/family")} />
         </IconsWrapper>
       </Wrapper>
     </StyledPaper>

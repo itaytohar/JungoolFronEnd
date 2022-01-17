@@ -16,10 +16,16 @@ export const DoughtnutChart: React.FC<DoughtnutChartProps> = ({
   colors,
 }) => {
   const innerText = `${data[1].value}/${data[1].value + data[0].value}`;
+  const fakeEmptyData = [
+    { name: "finished", value: 0 },
+    { name: "total", value: 1 },
+  ];
+
+  const isEmpty = data[1].value === 0 && data[0].value === 0;
   return (
     <PieChart width={120} height={120}>
       <Pie
-        data={data}
+        data={isEmpty ? fakeEmptyData : data}
         cx={60}
         cy={60}
         innerRadius={40}

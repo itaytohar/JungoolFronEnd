@@ -17,7 +17,7 @@ interface ISection {
   content: { text: string; color: string };
   backgroundColor: string;
   reversed?: boolean;
-  navigateTo: string;
+  navigateTo?: string | null;
 }
 
 export const Section: React.FC<ISection> = ({
@@ -33,7 +33,7 @@ export const Section: React.FC<ISection> = ({
   return (
     <StyledSection
       backgroundColor={backgroundColor}
-      onClick={() => navigate(navigateTo)}
+      onClick={() => navigateTo && navigate(navigateTo)}
     >
       {reversed ? (
         <>

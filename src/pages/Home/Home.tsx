@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
+import { CustomerContext } from "../../CustomerContext";
 import { ThemeType } from "../../global-styles/theme";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Loader } from "../../Shared/Loader/Loader";
 import { Section } from "./Components/Section/Section";
 import { HeaderContainer, MainLayout, StyledHeader } from "./style";
@@ -18,7 +20,6 @@ export const Home: React.FC = () => {
     pickPackages: string;
     pickingAddress: string;
   }
-
   interface IPlanRenewal {
     insightID: string;
     insightType: "planRenewal";
@@ -31,14 +32,33 @@ export const Home: React.FC = () => {
     insightType: "warrantyExpiration";
     warrantyCount: string;
   }
+  interface IEInsights {
+    smartPick: ISmartPick | null;
+    warrantyExpiration: IWarrantyExpiration | null;
+    planRenewal: IPlanRenewal | null;
+  }
 
-  const [smartPick, setSmartPick] = useState<ISmartPick | null>(null);
-  const [planRenewal, setPlanRenewal] = useState<IPlanRenewal | null>(null);
-  const [warrantyExpiration, setWarrantyExpiration] =
-    useState<IWarrantyExpiration | null>(null);
+  const [insights, setInsights] = useState<IEInsights>({
+    smartPick: null,
+    warrantyExpiration: null,
+    planRenewal: null,
+  });
+
+  const [loading, setLoading] = useState(true);
+  const { setCustomer } = useContext(CustomerContext);
+  const [, setStorageCustomer] = useLocalStorage("customer", null);
+
   let params = useParams();
 
   useEffect(() => {
+    if (!params.customerID) return;
+    setCustomer(params.customerID);
+    setStorageCustomer(params.customerID);
+  }, [params, setCustomer, setStorageCustomer]);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (!params || !loading) return;
     axios({
       method: "GET",
       url: URL,
@@ -46,22 +66,34 @@ export const Home: React.FC = () => {
         customerID: params.customerID,
       },
     }).then((res) => {
+      if (!isMounted) return;
       const { insights } = res.data;
+      const myInsights = {
+        smartPick: null,
+        warrantyExpiration: null,
+        planRenewal: null,
+      };
       insights.forEach((section: any) => {
         switch (section.insightType) {
           case "smartPickup":
-            setSmartPick(section);
+            myInsights.smartPick = { ...section };
             break;
           case "planRenewal":
-            setPlanRenewal(section);
+            myInsights.planRenewal = { ...section };
             break;
           case "warrantyExpiration":
-            setWarrantyExpiration(section);
+            myInsights.warrantyExpiration = { ...section };
             break;
         }
       });
+      setInsights(myInsights);
+      setLoading(false);
     });
-  }, [params]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [params, loading]);
 
   const createData = useCallback(
     (totalVal, completedVal) => [
@@ -72,19 +104,22 @@ export const Home: React.FC = () => {
   );
 
   const theme = useTheme() as ThemeType;
+  const { smartPick, planRenewal, warrantyExpiration } = insights;
 
   return (
     <MainLayout>
       <HeaderContainer backgroundColor={theme.colors.headerBackground}>
         <StyledHeader color={theme.colors.headerColor}>My Jungool</StyledHeader>
       </HeaderContainer>
-      {smartPick && warrantyExpiration && planRenewal ? (
+      {!loading ? (
         <>
           <Section
-            navigateTo={`/smartpick/${smartPick.insightID}`}
+            navigateTo={smartPick && `/smartpick/${smartPick.insightID}`}
             backgroundColor={theme.colors.smartPick.backgroundColor}
             graphProps={{
-              data: createData(smartPick.allPackages, smartPick.pickPackages),
+              data: smartPick
+                ? createData(smartPick.allPackages, smartPick.pickPackages)
+                : createData("0", "0"),
               colors: theme.colors.smartPick.graphColors,
             }}
             contentHeader={{
@@ -92,19 +127,20 @@ export const Home: React.FC = () => {
               color: theme.colors.smartPick.headerColor,
             }}
             content={{
-              text: `${smartPick.bestPickingDate} will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`,
+              text: smartPick
+                ? `${smartPick.bestPickingDate} will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
+                : `No Packages yet`,
               color: theme.colors.smartPick.contentColor,
             }}
           />
           <Section
-            navigateTo={`/plan/${planRenewal.insightID}`}
+            navigateTo={planRenewal && `/plan/${planRenewal.insightID}`}
             reversed
             backgroundColor={theme.colors.renewalPlans.backgroundColor}
             graphProps={{
-              data: createData(
-                planRenewal.plansCount,
-                planRenewal.renewalCount
-              ),
+              data: planRenewal
+                ? createData(planRenewal.plansCount, planRenewal.renewalCount)
+                : createData("0", "0"),
               colors: theme.colors.renewalPlans.graphColors,
             }}
             contentHeader={{
@@ -112,18 +148,24 @@ export const Home: React.FC = () => {
               color: theme.colors.renewalPlans.headerColor,
             }}
             content={{
-              text: `${planRenewal.renewalCount} plans are waiting this month for renewal.`,
+              text: planRenewal
+                ? `${planRenewal.renewalCount} plans are waiting this month for renewal.`
+                : "No Plans yet",
               color: theme.colors.renewalPlans.contentColor,
             }}
           />
           <Section
-            navigateTo={`/warranty/${warrantyExpiration.insightID}`}
+            navigateTo={
+              warrantyExpiration && `/warranty/${warrantyExpiration.insightID}`
+            }
             backgroundColor={theme.colors.warranty.backgroundColor}
             graphProps={{
-              data: createData(
-                warrantyExpiration.warrantyCount,
-                warrantyExpiration.expiredCount
-              ),
+              data: warrantyExpiration
+                ? createData(
+                    warrantyExpiration.warrantyCount,
+                    warrantyExpiration.expiredCount
+                  )
+                : createData("0", "0"),
               colors: theme.colors.warranty.graphColors,
             }}
             contentHeader={{
@@ -131,7 +173,9 @@ export const Home: React.FC = () => {
               color: theme.colors.warranty.headerColor,
             }}
             content={{
-              text: `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`,
+              text: warrantyExpiration
+                ? `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`
+                : "No Warranties yet",
               color: theme.colors.warranty.contentColor,
             }}
           />

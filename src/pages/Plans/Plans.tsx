@@ -1,18 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { theme } from "../../global-styles/theme";
+import { useTheme } from "styled-components";
+import { ThemeType } from "../../global-styles/theme";
+import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
-import { WarrantyPlanCard } from "../../Shared/WarrantyPlanCard/WarrantyPlanCard";
-import {
-  StyledDetail,
-  StyledDetailsContainer,
-  StyledImage,
-  StyledPropertyName,
-  StyledPropertyValue,
-  Wrapper,
-} from "../SmartPick/components/PickUpSection/style";
-import { Document, PlanList } from "./style";
+import { List } from "../../Shared/WarrantyPlanCard/style";
+import { Card } from "./components/Card";
 
 const URL =
   "https://prod-178.westeurope.logic.azure.com/workflows/9a28197a41c444ae8b73565d01d48fa7/triggers/manual/paths/invoke/?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9WPmrKKtsAg7yptTjJwCiZmvWYPrDHkUV7RMZ49MUp0";
@@ -32,14 +26,9 @@ export const Plans: React.FC = () => {
   const [plans, setPlans] = useState<IPlans | null>(null);
 
   const params = useParams();
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: any }) {
-    setNumPages(numPages);
-    setPageNumber(1);
-  }
   useEffect(() => {
+    let isMounted = true;
     axios({
       method: "GET",
       url: URL,
@@ -47,41 +36,31 @@ export const Plans: React.FC = () => {
         insightID: params.insightID,
       },
     }).then((res) => {
-      console.log(res.data);
-
+      if (!isMounted) return;
       setPlans(res.data);
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, [params]);
+
+  const theme = useTheme() as ThemeType;
 
   return (
     <PreviewLayout
       header="Plans"
-      backgroundColor={theme.colors.smartPick.backgroundColor}
+      backgroundColor={theme.colors.previewBackground}
     >
-      <PlanList>
-        {plans &&
-          plans.plans.map(
-            ({ url, EndDate, monthlyCost, serviceProvider, planID }) => (
-              <WarrantyPlanCard key={planID} viewItem={<Document src={url} />}>
-                <StyledImage />
-                <StyledDetailsContainer>
-                  <StyledDetail>
-                    <StyledPropertyName>Service Provider: </StyledPropertyName>
-                    <StyledPropertyValue>{serviceProvider}</StyledPropertyValue>
-                  </StyledDetail>
-                  <StyledDetail>
-                    <StyledPropertyName>Expiration Date: </StyledPropertyName>
-                    <StyledPropertyValue>{EndDate}</StyledPropertyValue>
-                  </StyledDetail>
-                  <StyledDetail>
-                    <StyledPropertyName>Monthly Cost: </StyledPropertyName>
-                    <StyledPropertyValue>{monthlyCost}</StyledPropertyValue>
-                  </StyledDetail>
-                </StyledDetailsContainer>
-              </WarrantyPlanCard>
-            )
-          )}
-      </PlanList>
+      <List>
+        {plans ? (
+          plans.plans.map(({ planID, ...planProps }) => (
+            <Card key={planID} {...planProps} />
+          ))
+        ) : (
+          <Loader />
+        )}
+      </List>
     </PreviewLayout>
   );
 };

@@ -1,3 +1,4 @@
+import { Family } from "./pages/Family/Family";
 import { Home } from "./pages/Home/Home";
 import { Plans } from "./pages/Plans/Plans";
 import { SmartPick } from "./pages/SmartPick/SmartPick";
@@ -17,11 +18,15 @@ export const routes: RouteProps[] = [
     element: <SmartPick />,
   },
   {
-    path: "Warranty/:insightID",
+    path: "warranty/:insightID",
     element: <Warranty />,
   },
   {
-    path: "Plan/:insightID",
+    path: "plan/:insightID",
     element: <Plans />,
+  },
+  {
+    path: "family",
+    element: <Family />,
   },
 ];
