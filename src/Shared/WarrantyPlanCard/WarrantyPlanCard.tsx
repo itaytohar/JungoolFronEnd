@@ -2,7 +2,8 @@ import Tippy from "@tippyjs/react";
 import { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StyledIcon } from "../../pages/SmartPick/components/PickUpSection/style";
-import { CardContainer, Collapsed, CollapsedParent } from "./style";
+import { Collapsed } from "../Collapsed/Collapsed";
+import { CardContainer } from "./style";
 
 const fix = require("../../assets/icons/fix.png");
 const renew = require("../../assets/icons/renew.png");
@@ -69,9 +70,7 @@ export const WarrantyPlanCard: React.FC<IWarrantyPlanCard> = ({
           </div>
         </div>
       </CardContainer>
-      <CollapsedParent isOpen={isOpen}>
-        <Collapsed>{viewItem}</Collapsed>
-      </CollapsedParent>
+      <Collapsed isOpen={isOpen} viewItem={viewItem} />
     </>
   );
 };
