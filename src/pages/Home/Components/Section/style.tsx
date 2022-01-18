@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const StyledSection = styled.div<{ backgroundColor: string }>`
-  height: 30%;
+  height: 33.333%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  overflow: hidden;
 `;
 
 export const StyledContentWrapper = styled.div`

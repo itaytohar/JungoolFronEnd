@@ -7,11 +7,9 @@ export const MainLayout = styled.div`
   flex-direction: column;
 `;
 
-
-
 export const HeaderContainer = styled.div<{ backgroundColor: string }>`
   display: flex;
-  height: 10%;
+  padding: 24px 0;
   align-items: center;
   justify-content: center;
   color: ${({ color }) => color};
@@ -21,3 +19,8 @@ export const StyledHeader = styled.h1`
   color: ${({ color }) => color};
 `;
 
+export const SectionsContainer = styled.div<{ isOtherTasksOpen: boolean }>`
+  height: ${({ isOtherTasksOpen }) => (isOtherTasksOpen ? 0 : "90%")};
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+`;
