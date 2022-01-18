@@ -22,7 +22,9 @@ export const Card: React.FC<CardProps> = ({
   url,
 }) => (
   <WarrantyPlanCard viewItem={<Document src={url} />}>
-    <StyledImage />
+    <StyledImage
+      src={require(`../../../assets/images/ServiceProviders/${serviceProvider}.png`)}
+    />
     <StyledDetailsContainer>
       <StyledDetail>
         <StyledPropertyName>Service Provider: </StyledPropertyName>

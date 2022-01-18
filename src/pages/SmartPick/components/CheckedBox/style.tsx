@@ -38,6 +38,9 @@ export const IconsContainer = styled.div`
 export const StyledIcon = styled.img`
   width: 60px;
   height: 60px;
+`;
+
+export const StyledCancel = styled(StyledIcon)`
   filter: invert(58%) sepia(40%) saturate(6229%) hue-rotate(187deg)
     brightness(102%) contrast(97%);
 `;
