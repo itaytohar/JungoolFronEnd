@@ -18,7 +18,7 @@ const PATCH_URL =
   "https://prod-178.westeurope.logic.azure.com/workflows/9a28197a41c444ae8b73565d01d48fa7/triggers/manual/paths/invoke/?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9WPmrKKtsAg7yptTjJwCiZmvWYPrDHkUV7RMZ49MUp0";
 
 export const SmartPick: React.FC = () => {
-  let params = useParams();
+  const params = useParams();
 
   interface IPickOrder {
     bestPickingDate: string;
