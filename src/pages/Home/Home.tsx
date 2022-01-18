@@ -48,7 +48,7 @@ export const Home: React.FC = () => {
   const { setCustomer } = useContext(CustomerContext);
   const [, setStorageCustomer] = useLocalStorage("customer", null);
 
-  let params = useParams();
+  const params = useParams();
 
   useEffect(() => {
     if (!params.customerID) return;
