@@ -5,6 +5,7 @@ import {
   StyledImg,
   StyledText,
   Wrapper,
+  StyledCancel,
 } from "./style";
 const checkmark = require("../../../../assets/images/checkmark.png");
 const checked = require("../../../../assets/icons/checked.png");
@@ -21,7 +22,7 @@ export const CheckedBox: React.FC<{
     <StyledText>Are you sure that your task completed?</StyledText>
     <IconsContainer>
       <StyledIcon onClick={() => onCheck()} src={checked} />
-      <StyledIcon onClick={() => onClose()} src={cancel} />
+      <StyledCancel onClick={() => onClose()} src={cancel} />
     </IconsContainer>
   </Wrapper>
 );

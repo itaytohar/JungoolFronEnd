@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Collapsed } from "../../../../Shared/Collapsed/Collapsed";
-import { StyledIcon } from "../../../SmartPick/components/CheckedBox/style";
 import {
   StyledArrow,
   StyledButton,

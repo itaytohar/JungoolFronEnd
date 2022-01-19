@@ -21,7 +21,9 @@ export const Card: React.FC<CardProps> = ({
   EndDate,
 }) => (
   <WarrantyPlanCard isWarranty viewItem={<img src={url} alt="warranty" />}>
-    <StyledImage />
+    <StyledImage
+      src={require(`../../../assets/images/products/${warrantyType}.png`)}
+    />
     <StyledDetailsContainer>
       <StyledDetail>
         <StyledPropertyName>Product Type: </StyledPropertyName>

@@ -1,7 +1,7 @@
 import Tippy from "@tippyjs/react";
 import { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledIcon } from "../../pages/SmartPick/components/PickUpSection/style";
+import { StyledIcon } from "./style";
 import { Collapsed } from "../Collapsed/Collapsed";
 import { CardContainer } from "./style";
 

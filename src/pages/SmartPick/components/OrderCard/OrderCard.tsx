@@ -6,11 +6,9 @@ import {
   StyledPropertyValue,
   Wrapper,
 } from "../PickUpSection/style";
-import { CardWrapper, CheckIcon } from "./style";
+import { CardWrapper } from "./style";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-
-const checked = require("../../../../assets/icons/checked.png");
 
 interface IOrderCard {
   orderID: string;
@@ -32,7 +30,11 @@ export const OrderCard: React.FC<IOrderCard> = ({
   return (
     <CardWrapper>
       <Wrapper>
-        <StyledImage src={supplier} />
+        <StyledImage
+          // src={require(`../../../../assets/images/suppliers/${supplier}.png`)}
+          src={supplier}
+          alt="supplier"
+        />
         <StyledDetailsContainer>
           <StyledDetail>
             <StyledPropertyName>Order ID: </StyledPropertyName>
@@ -59,7 +61,6 @@ export const OrderCard: React.FC<IOrderCard> = ({
             <StyledPropertyValue>{trackingID}</StyledPropertyValue>
           </StyledDetail>
         </StyledDetailsContainer>
-        <CheckIcon src={checked} />
       </Wrapper>
     </CardWrapper>
   );
