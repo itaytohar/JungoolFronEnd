@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
@@ -6,6 +7,8 @@ import { CustomerContext } from "../../CustomerContext";
 import { ThemeType } from "../../global-styles/theme";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Loader } from "../../Shared/Loader/Loader";
+import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
+import { homeURL } from "../../varaibles";
 import { OtherTasks } from "./Components/OtherTasks/OtherTasks";
 import { Section } from "./Components/Section/Section";
 import {
@@ -14,9 +17,6 @@ import {
   SectionsContainer,
   StyledHeader,
 } from "./style";
-const URL =
-  "https://prod-02.westeurope.logic.azure.com:443/workflows/b858059835ba42a893f439699b522291/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fQGHCyzr2BYw-cQ3XZS_tjJ4XNVeD93aNPVfMV478T4";
-
 export const Home: React.FC = () => {
   interface ISmartPick {
     allPackages: string;
@@ -68,7 +68,7 @@ export const Home: React.FC = () => {
     if (!params || !loading) return;
     axios({
       method: "GET",
-      url: URL,
+      url: homeURL,
       params: {
         customerID: params.customerID,
       },
@@ -114,10 +114,7 @@ export const Home: React.FC = () => {
   const { smartPick, planRenewal, warrantyExpiration } = insights;
 
   return (
-    <MainLayout>
-      <HeaderContainer backgroundColor={theme.colors.headerBackground}>
-        <StyledHeader color={theme.colors.headerColor}>My Jungool</StyledHeader>
-      </HeaderContainer>
+    <PreviewLayout header="MY Jungool">
       {!loading ? (
         <>
           <SectionsContainer isOtherTasksOpen={isOtherTasksOpen}>
@@ -130,14 +127,18 @@ export const Home: React.FC = () => {
                   : createData("0", "0"),
                 colors: theme.colors.smartPick.graphColors,
               }}
-              contentHeader={{
-                text: "smart picks",
+              firstContent={{
+                text: "packages",
+                subHeader: "smart pick",
                 color: theme.colors.smartPick.headerColor,
               }}
-              content={{
+              secondContent={{
                 text: smartPick
-                  ? `${smartPick.bestPickingDate} will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
+                  ? `will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
                   : `No Packages yet`,
+                subHeader: smartPick
+                  ? dayjs(smartPick.bestPickingDate).format("dddd YY/MM")
+                  : ``,
                 color: theme.colors.smartPick.contentColor,
               }}
             />
@@ -151,11 +152,13 @@ export const Home: React.FC = () => {
                   : createData("0", "0"),
                 colors: theme.colors.renewalPlans.graphColors,
               }}
-              contentHeader={{
-                text: "plan renewal",
+              firstContent={{
+                subHeader: "plan renewal",
+                text: "Subsciptions",
                 color: theme.colors.renewalPlans.headerColor,
               }}
-              content={{
+              secondContent={{
+                subHeader: ``,
                 text: planRenewal
                   ? `${planRenewal.renewalCount} plans are waiting this month for renewal.`
                   : "No Plans yet",
@@ -177,14 +180,16 @@ export const Home: React.FC = () => {
                   : createData("0", "0"),
                 colors: theme.colors.warranty.graphColors,
               }}
-              contentHeader={{
-                text: "warranty expiration",
+              firstContent={{
+                subHeader: "warranty expiration",
+                text: "",
                 color: theme.colors.warranty.headerColor,
               }}
-              content={{
+              secondContent={{
                 text: warrantyExpiration
                   ? `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`
                   : "No Warranties yet",
+                subHeader: "",
                 color: theme.colors.warranty.contentColor,
               }}
             />
@@ -201,6 +206,6 @@ export const Home: React.FC = () => {
       ) : (
         <Loader />
       )}
-    </MainLayout>
+    </PreviewLayout>
   );
 };

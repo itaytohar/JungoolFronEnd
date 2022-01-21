@@ -3,11 +3,13 @@ import { Collapsed } from "../../../../Shared/Collapsed/Collapsed";
 import {
   StyledArrow,
   StyledButton,
+  StyledButtonText,
   StyledContainer,
   StyledFillSection,
+  StyledOpenButton,
   StyledTextArea,
 } from "./style";
-const arrow = require("../../../../assets/icons/arrow.png");
+import arrow from "../../../../assets/icons/arrow.svg";
 
 export const OtherTasks: React.FC<{
   isOpen: boolean;
@@ -19,8 +21,10 @@ export const OtherTasks: React.FC<{
   return (
     <>
       <StyledContainer onClick={() => toggle()}>
-        <h1>Other Tasks</h1>
-        <StyledArrow isOpen={isOpen} src={arrow} />
+        <StyledOpenButton>
+          <StyledArrow isOpen={isOpen} src={arrow} />
+          <StyledButtonText>Other Tasks</StyledButtonText>
+        </StyledOpenButton>
       </StyledContainer>
       <Collapsed
         type="full"

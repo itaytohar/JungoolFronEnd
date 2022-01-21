@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -5,16 +6,22 @@ import {
   DoughtnutChartProps,
 } from "../DoughnutChart/DoughnutChart";
 import {
+  SecondContentHeader,
   StyledContent,
   StyledContentHeader,
   StyledContentWrapper,
   StyledSection,
+  Wrapper,
 } from "./style";
 
 interface ISection {
   graphProps: DoughtnutChartProps;
-  contentHeader: { text: string; color: string };
-  content: { text: string; color: string };
+  firstContent: { subHeader?: string; text: string; color: string };
+  secondContent: {
+    subHeader?: string | Date | Dayjs;
+    text: string;
+    color: string;
+  };
   backgroundColor: string;
   reversed?: boolean;
   navigateTo?: string | null;
@@ -22,8 +29,8 @@ interface ISection {
 
 export const Section: React.FC<ISection> = ({
   graphProps,
-  contentHeader,
-  content,
+  firstContent,
+  secondContent,
   backgroundColor,
   reversed,
   navigateTo,
@@ -37,23 +44,39 @@ export const Section: React.FC<ISection> = ({
     >
       {reversed ? (
         <>
-          <StyledContentWrapper>
-            <StyledContentHeader color={contentHeader.color}>
-              {contentHeader.text}
-            </StyledContentHeader>
-            <StyledContent color={content.color}>{content.text}</StyledContent>
-          </StyledContentWrapper>
+          <Wrapper>
+            <StyledContentWrapper color={firstContent.color}>
+              <StyledContentHeader>
+                {firstContent.subHeader}
+              </StyledContentHeader>
+              <StyledContent>{firstContent.text}</StyledContent>
+            </StyledContentWrapper>
+            <StyledContentWrapper color={secondContent.color}>
+              <SecondContentHeader>
+                {secondContent.subHeader}
+              </SecondContentHeader>
+              <StyledContent>{secondContent.text}</StyledContent>
+            </StyledContentWrapper>
+          </Wrapper>
           <DoughtnutChart data={graphProps.data} colors={graphProps.colors} />
         </>
       ) : (
         <>
           <DoughtnutChart data={graphProps.data} colors={graphProps.colors} />
-          <StyledContentWrapper>
-            <StyledContentHeader color={contentHeader.color}>
-              {contentHeader.text}
-            </StyledContentHeader>
-            <StyledContent color={content.color}>{content.text}</StyledContent>
-          </StyledContentWrapper>
+          <Wrapper>
+            <StyledContentWrapper color={firstContent.color}>
+              <StyledContentHeader>
+                {firstContent.subHeader}
+              </StyledContentHeader>
+              <StyledContent>{firstContent.text}</StyledContent>
+            </StyledContentWrapper>
+            <StyledContentWrapper color={secondContent.color}>
+              <SecondContentHeader>
+                {secondContent.subHeader}
+              </SecondContentHeader>
+              <StyledContent>{secondContent.text}</StyledContent>
+            </StyledContentWrapper>
+          </Wrapper>
         </>
       )}
     </StyledSection>

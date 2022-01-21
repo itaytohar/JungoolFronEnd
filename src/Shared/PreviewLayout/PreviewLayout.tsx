@@ -1,37 +1,51 @@
 import { useNavigate } from "react-router-dom";
-import { StyledHeader, StyledIcon } from "./style";
-import back from "../../assets/icons/back.svg";
+import {
+  Avatar,
+  HeaderContent,
+  StyledLabelThick,
+  StyledLabelThin,
+  StyledLogo,
+  Wrapper,
+} from "./style";
+import logo from "../../assets/images/Logo.svg";
+import avatar from "../../assets/images/avatar.svg";
 
 import {
   BackButton,
   BodyContainer,
-  Divider,
   StyledHeaderWrapper,
   StyledLayout,
 } from "./style";
 
 interface IPreviewLayout {
   header: string;
-  backgroundColor: string;
 }
 
 export const PreviewLayout: React.FC<IPreviewLayout> = ({
   header,
   children,
-  backgroundColor,
 }) => {
-  const navigate = useNavigate();
-
+  // const navigate = useNavigate();
+  const headerArr = header.split(" ");
   return (
-    <StyledLayout backgroundColor={backgroundColor}>
+    <StyledLayout>
       <StyledHeaderWrapper>
-        <BackButton onClick={() => navigate(-1)}>
-          <StyledIcon src={back} />
-        </BackButton>
-        <StyledHeader>{header}</StyledHeader>
+        <Wrapper>
+        <StyledLogo src={logo} />
+          <HeaderContent>
+            <StyledLabelThin>{headerArr[0]}</StyledLabelThin>
+            <StyledLabelThick>{headerArr[1]}</StyledLabelThick>
+          </HeaderContent>
+        </Wrapper>
+        <Avatar src={avatar} />
       </StyledHeaderWrapper>
-      <Divider />
       <BodyContainer>{children}</BodyContainer>
     </StyledLayout>
   );
 };
+
+{
+  /* <BackButton onClick={() => navigate(-1)}>
+          <StyledIcon src={back} />
+        </BackButton> */
+}

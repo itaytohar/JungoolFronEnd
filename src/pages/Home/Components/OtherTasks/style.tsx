@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
-  background-color: ${({ theme }) => theme.colors.renewalPlans.backgroundColor};
+  height: 10%;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.warranty.backgroundColor};
   color: ${({ theme }) => theme.colors.renewalPlans.contentColor};
   padding: 12px;
   display: flex;
@@ -10,12 +12,30 @@ export const StyledContainer = styled.div`
   border-bottom: 1px solid #c8c7c744;
 `;
 
+export const StyledButtonText = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+`;
+
+export const StyledOpenButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  padding: 12px;
+  background-color: ${({ theme }) => theme.colors.warranty.contentColor};
+  color: white;
+  border-radius: 24px;
+  border: none;
+`;
+
 export const StyledArrow = styled.img<{ isOpen: boolean }>`
-  margin-inline-start: 8px;
-  transform: ${({ isOpen }) => isOpen && "rotate(-180deg)"};
+  margin-inline-end: 12px;
+  transform: ${({ isOpen }) => isOpen && "rotate(180deg)"};
   transition: transform 300ms ease-in-out;
-  filter: invert(58%) sepia(40%) saturate(6229%) hue-rotate(187deg)
-    brightness(102%) contrast(97%);
+  filter: brightness(3);
 `;
 
 export const StyledFillSection = styled.div`
@@ -40,7 +60,7 @@ export const StyledButton = styled.button`
   font-size: 16px;
   width: 200px;
   height: 40px;
-  background-color: ${({ theme }) => theme.colors.headerColor};
+  background-color: ${({ theme }) => theme.colors.warranty.contentColor};
   color: white;
   border-radius: 10px;
   border: none;

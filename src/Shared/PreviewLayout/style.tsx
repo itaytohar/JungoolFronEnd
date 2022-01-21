@@ -1,33 +1,41 @@
 import styled from "styled-components";
 
-export const StyledLayout = styled.div<{ backgroundColor: string }>`
+export const StyledLayout = styled.div`
   display: flex;
   height: 100%;
   overflow-y: auto;
   flex-direction: column;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-`;
-
-export const Divider = styled.div`
-  height: 5%;
-  background-color: ${({ theme }) => theme.colors.divider};
-  margin-block-end: 12px;
 `;
 
 export const StyledHeaderWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.previewHeaderBackground};
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
 `;
 
-export const StyledHeader = styled.h1`
-  color: ${({ theme }) => theme.colors.previewHeader};
+export const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.previewHeaderContent};
+  padding-top: 8px;
+  display: inline-block;
+`;
+
+export const StyledLabelThin = styled.span`
+  font-family: "Heebo", sans-serif;
+  margin-inline-end: 4px;
+`;
+export const StyledLabelThick = styled.span`
+  font-family: "Roboto", sans-serif;
 `;
 
 export const BodyContainer = styled.div`
-  height: 85%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,8 +53,17 @@ export const BackButton = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
+export const Avatar = styled.img`
+  margin-inline-end: 12px;
+`;
 
-export const StyledIcon = styled.img`
-  filter: invert(57%) sepia(83%) saturate(3855%) hue-rotate(187deg)
-    brightness(102%) contrast(97%);
+export const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledLogo = styled.img`
+  margin-inline-start: 40px;
+  margin-inline-end: 8px;
 `;
