@@ -5,20 +5,21 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 export const ImageContaier = styled.div`
-  height: 60%;
-  object-fit: cover;
+  width: 50%;
+  margin-block-end: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const StyledText = styled.p`
-  height: 10%;
+  height: 13%;
   text-align: center;
-  width: 60%;
-  color: ${({ theme }) => theme.colors.previewHeader};
+  width: 65%;
+  color: ${({ theme }) => theme.colors.previewHeaderBackground};
 `;
 
 export const StyledImg = styled.img`
@@ -29,18 +30,8 @@ export const StyledImg = styled.img`
 
 export const IconsContainer = styled.div`
   display: flex;
-  height: 30%;
-  width: 100%;
-  align-items: center;
+  margin-block-start: 12px ;
+  width: 60%;
+  align-items: flex-start;
   justify-content: space-around;
-`;
-
-export const StyledIcon = styled.img`
-  width: 60px;
-  height: 60px;
-`;
-
-export const StyledCancel = styled(StyledIcon)`
-  filter: invert(58%) sepia(40%) saturate(6229%) hue-rotate(187deg)
-    brightness(102%) contrast(97%);
 `;

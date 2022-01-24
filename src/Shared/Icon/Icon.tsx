@@ -4,7 +4,7 @@ import { StyledIcon, StyledText, Wrapper } from "./style";
 type IconProps = {
   text?: string;
   url: string;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg";
   tooltip?: string;
   onClick?: (...args: any) => any;
 };

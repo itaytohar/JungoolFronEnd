@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledModal = styled.div<{ isOpen: boolean }>`
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.157);
+  background-color: rgba(51, 214, 175, 36%);
   top: 0;
   left: 0;
   right: 0;
@@ -10,18 +10,18 @@ export const StyledModal = styled.div<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: ${({ isOpen }) => (isOpen ? 5 : -2)};
+  z-index: ${({ isOpen }) => (isOpen ? 5 : -1)};
   width: 100%;
   height: 100%;
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  transition: all 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const Box = styled.div`
   position: fixed;
   z-index: 6;
-  width: 80%;
-  height: 80%;
+  width: 75%;
+  height: 50%;
   padding: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,

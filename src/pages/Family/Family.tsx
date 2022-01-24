@@ -14,6 +14,7 @@ export const Family: React.FC = () => {
       customerID: string;
       fullName: string;
       numberOfTasks: string;
+      memberType: "Father" | "Daughter" | "Son" | "Mother";
     }[];
   }
 
@@ -39,12 +40,29 @@ export const Family: React.FC = () => {
   }, [customer]);
 
   return (
-    <PreviewLayout header="FAMILY TASKS">
+    <PreviewLayout header="FAMILY TASKS" bgc="white">
       {family ? (
         <GridContainer>
-          {family.community.map(({ customerID, ...memberProps }) => (
-            <MemberCard key={customerID} {...memberProps} />
-          ))}
+          {family.community.map(
+            ({ customerID, memberType, ...memberProps }) => {
+              let url;
+              switch (memberType) {
+                case "Father":
+                  url = "father";
+                  break;
+                case "Son":
+                  url = "son-" + Math.floor(Math.random() * 3);
+                  break;
+                case "Daughter":
+                  url = "mother";
+                  break;
+                case "Mother":
+                  url = "mother";
+                  break;
+              }
+              return <MemberCard url={url} key={customerID} {...memberProps} />;
+            }
+          )}
         </GridContainer>
       ) : (
         <Loader />

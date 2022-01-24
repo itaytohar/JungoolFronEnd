@@ -35,13 +35,13 @@ export const StyledLabelThick = styled.span`
   font-family: "Roboto", sans-serif;
 `;
 
-export const BodyContainer = styled.div<{ isHome?: boolean }>`
+export const BodyContainer = styled.div<{ bgc?: string }>`
   height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme, isHome }) =>
-    !isHome && theme.colors.previewHeaderBackground};
+  background-color: ${({ theme, bgc }) =>
+    bgc || theme.colors.previewHeaderBackground};
 `;
 
 export const BackButton = styled.button`

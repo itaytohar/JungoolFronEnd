@@ -23,12 +23,14 @@ import { Icon } from "../Icon/Icon";
 interface IPreviewLayout {
   header: string;
   isHome?: boolean;
+  bgc?: string;
 }
 
 export const PreviewLayout: React.FC<IPreviewLayout> = ({
   header,
   children,
   isHome,
+  bgc,
 }) => {
   const navigate = useNavigate();
   const headerArr = header.split(" ");
@@ -53,7 +55,7 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
         </Wrapper>
         <Avatar src={avatar} />
       </StyledHeaderWrapper>
-      <BodyContainer isHome={isHome}>{children}</BodyContainer>
+      <BodyContainer bgc={isHome ? "white" : bgc}>{children}</BodyContainer>
     </StyledLayout>
   );
 };

@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const StyledIcon = styled.img<{ size?: "sm" | "md" }>`
+export const StyledIcon = styled.img<{ size?: "sm" | "md" | "lg" }>`
   ${({ size }) =>
     size == "md"
       ? `
   height: 40px;
   width: 40px;
+  `
+      : size == "lg"
+      ? `
+  height: 60px;
+  width: 60px;
   `
       : `
   height: 35px;

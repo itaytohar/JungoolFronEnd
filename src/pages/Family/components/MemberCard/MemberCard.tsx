@@ -1,34 +1,38 @@
 import { StyledIcon } from "../../../SmartPick/components/PickUpSection/style";
-import { Container, ImgContainer, StyledLabel, StyledNumber } from "./style";
-const user = require("../../../../assets/icons/user.png");
-const task = require("../../../../assets/icons/task.png");
+import {
+  Container,
+  Image,
+  ImgContainer,
+  NumberContainer,
+  StyledLabel,
+  StyledNumber,
+  Wrapper,
+} from "./style";
+import task from "../../../../assets/icons/task.svg";
 
 type MemberCardProps = {
   fullName: string;
   numberOfTasks: string;
+  url: string;
 };
 
 export const MemberCard: React.FC<MemberCardProps> = ({
   fullName,
+  url,
   numberOfTasks,
 }) => {
   return (
     <Container>
-      <ImgContainer>
-        <StyledIcon src={user} style={{ marginBottom: "24px" }} />
-      </ImgContainer>
-      <StyledLabel>{fullName}</StyledLabel>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-          width: "70%",
-        }}
-      >
-        <StyledNumber>{numberOfTasks}</StyledNumber>
+      <Wrapper>
         <StyledIcon src={task} />
-      </div>
+        <StyledLabel>{fullName}</StyledLabel>
+      </Wrapper>
+      <ImgContainer>
+        <Image src={require(`../../../../assets/images/family/${url}.png`)} />
+        <NumberContainer>
+          <StyledNumber>{numberOfTasks}</StyledNumber>
+        </NumberContainer>
+      </ImgContainer>
     </Container>
   );
 };
