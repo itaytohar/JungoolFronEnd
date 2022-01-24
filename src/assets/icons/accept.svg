@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+  <g id="Group_852" data-name="Group 852" transform="translate(2904 -1615)">
+    <g id="Group_850" data-name="Group 850" transform="translate(-2868 1153)">
+      <g id="Group_851" data-name="Group 851">
+        <path id="Path_856" data-name="Path 856" d="M28,0A28,28,0,1,1,0,28,28,28,0,0,1,28,0Z" transform="translate(-36 462)" fill="#33d6af"/>
+      </g>
+    </g>
+    <g id="Group_849" data-name="Group 849" transform="translate(-3000 1140)">
+      <g id="Component_1" data-name="Component 1" transform="translate(116 495)">
+        <path id="Checkbox" d="M6.9,12,1,6.1,2.4,4.7,6.9,9.1,15,1l1.4,1.4Z" transform="translate(-1 1)" fill="#fff"/>
+        <rect id="Rectangle_556" data-name="Rectangle 556" width="16" height="16" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

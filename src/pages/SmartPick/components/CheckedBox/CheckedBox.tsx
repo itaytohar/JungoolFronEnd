@@ -1,16 +1,15 @@
 import {
   IconsContainer,
-  StyledIcon,
   ImageContaier,
   StyledImg,
   StyledText,
   Wrapper,
-  StyledCancel,
 } from "./style";
-const checkmark = require("../../../../assets/images/checkmark.png");
-import checkedIcon from "../../../../assets/icons/checked.svg";
+import logo from "../../../../assets/images/modal-logo.svg";
+import accept from "../../../../assets/icons/accept.svg";
 
-const cancel = require("../../../../assets/icons/cancel.png");
+import cancel from "../../../../assets/icons/cancel.svg";
+import { Icon } from "../../../../Shared/Icon/Icon";
 
 export const CheckedBox: React.FC<{
   onClose: () => any;
@@ -18,12 +17,12 @@ export const CheckedBox: React.FC<{
 }> = ({ onClose, onCheck }) => (
   <Wrapper>
     <ImageContaier>
-      <StyledImg src={checkmark} />
+      <StyledImg src={logo} />
     </ImageContaier>
     <StyledText>Are you sure that your task completed?</StyledText>
     <IconsContainer>
-      <StyledIcon onClick={() => onCheck()} src={checkedIcon} />
-      <StyledCancel onClick={() => onClose()} src={cancel} />
+      <Icon size="lg" onClick={() => onCheck()} url={accept} />
+      <Icon size="lg" onClick={() => onClose()} url={cancel} />
     </IconsContainer>
   </Wrapper>
 );

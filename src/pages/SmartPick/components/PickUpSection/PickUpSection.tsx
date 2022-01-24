@@ -38,7 +38,9 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
         </StyledDetail>
         <StyledDetail>
           <StyledPropertyName>ETA</StyledPropertyName>
-          <StyledPropertyValue>{dayjs(eta).format("dddd MM/YY")}</StyledPropertyValue>
+          <StyledPropertyValue>
+            {dayjs(eta).format("dddd MM/YY")}
+          </StyledPropertyValue>
         </StyledDetail>
         <StyledDetail>
           <StyledPropertyName>Adress: </StyledPropertyName>
@@ -46,8 +48,18 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
         </StyledDetail>
       </StyledDetailsContainer>
       <IconsWrapper>
-        <Icon size="md" onClick={onClickChecked} url={checkedIcon} />
-        <Icon size="md" url={personIcon} onClick={() => navigate("/family")} />
+        <Icon
+          size="md"
+          onClick={onClickChecked}
+          text="Picked"
+          url={checkedIcon}
+        />
+        <Icon
+          size="md"
+          url={personIcon}
+          text="Delegate"
+          onClick={() => navigate("/family")}
+        />
       </IconsWrapper>
     </StyledPaper>
   );
