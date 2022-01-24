@@ -9,3 +9,6 @@ export const updateURL =
 
 export const homeURL =
   "https://customerinsights2022.azurewebsites.net/api/CustomerInsights?&code=TXWMXm1kLEirvdjgp3Ko5N0jYwaYWBu1/E1Thrk7RY8xv8SIXOimzA==";
+
+export const addOtherTaskURL =
+  "https://addothertasks20220119210536.azurewebsites.net/api/AddOtherTasks?code=LBC9z8Z6x/c0JBM2oDul/abaowCg/pf16Omx/AQRYC7PlMaCQQyMbg==";

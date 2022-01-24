@@ -1,5 +1,7 @@
 import React from "react";
 import { Cell, Label, Pie, PieChart } from "recharts";
+import { useTheme } from "styled-components";
+import { ThemeType } from "../../../../global-styles/theme";
 import { CustomLabel } from "./CustomLabel";
 
 type Data = {
@@ -18,9 +20,10 @@ export const DoughtnutChart: React.FC<DoughtnutChartProps> = ({
 }) => {
   const innerText = `${data[1].value}/${data[1].value + data[0].value}`;
   const fakeEmptyData = [
-    { name: "finished", value: 0 },
-    { name: "total", value: 1 },
+    { name: "finished", value: 1 },
+    { name: "total", value: 0 },
   ];
+  const theme = useTheme() as ThemeType;
 
   const isEmpty = data[1].value === 0 && data[0].value === 0;
   return (
@@ -42,7 +45,9 @@ export const DoughtnutChart: React.FC<DoughtnutChartProps> = ({
         <Label
           width={50}
           position="center"
-          content={<CustomLabel fill={colors[1]} value={innerText} />}
+          content={
+            <CustomLabel fill={theme.colors.innerText} value={innerText} />
+          }
         />
       </Pie>
       <Pie
