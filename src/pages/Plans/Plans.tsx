@@ -46,7 +46,7 @@ export const Plans: React.FC = () => {
   const theme = useTheme() as ThemeType;
 
   return (
-    <PreviewLayout header="Plans">
+    <PreviewLayout header="my plans">
       <List>
         {plans ? (
           plans.plans.map(({ planID, ...planProps }) => (

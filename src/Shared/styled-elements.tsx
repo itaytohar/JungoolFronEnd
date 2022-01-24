@@ -20,7 +20,7 @@ export const StyledDetailsContainer = styled.div`
   height: 100%;
   width: 40%;
   white-space: nowrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
 
 export const StyledDetail = styled.div`

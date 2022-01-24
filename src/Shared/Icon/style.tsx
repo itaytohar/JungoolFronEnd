@@ -4,8 +4,8 @@ export const StyledIcon = styled.img<{ size?: "sm" | "md" }>`
   ${({ size }) =>
     size == "md"
       ? `
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   `
       : `
   height: 35px;

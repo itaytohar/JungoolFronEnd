@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
 export const StyledPaper = styled.div`
-  background-color: white;
-  height: 120px;
-  width: 95%;
-  padding: 8px;
-`;
-
-export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
+  background-color: white;
+  height: 150px;
+  width: 100%;
+  padding: 8px;
+  justify-content: space-around;
   align-items: center;
+  border-bottom: 1px solid ${({theme})=> theme.colors.previewHeaderBackground};
 `;
 
 export const StyledImage = styled.img`

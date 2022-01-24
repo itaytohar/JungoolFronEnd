@@ -1,17 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { Icon } from "../../../../Shared/Icon/Icon";
 import {
-  IconsWrapper,
   StyledDetail,
   StyledDetailsContainer,
   StyledImage,
   StyledPropertyName,
-  StyledIcon,
   StyledPropertyValue,
-  StyledPaper,
-  Wrapper,
-} from "./style";
-const pickupImg = require("../../../../assets/images/package.jpeg");
-const checkedIcon = require("../../../../assets/icons/checked.png");
+} from "../../../../Shared/styled-elements";
+import { IconsWrapper, StyledPaper } from "./style";
+const pickupImg = require("../../../../assets/images/package.png");
+import checkedIcon from "../../../../assets/icons/checked.svg";
+import dayjs from "dayjs";
 const personIcon = require("../../../../assets/icons/person.png");
 
 interface IPickUpSection {
@@ -31,27 +30,25 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
   const navigate = useNavigate();
   return (
     <StyledPaper>
-      <Wrapper>
-        <StyledImage src={pickupImg} />
-        <StyledDetailsContainer>
-          <StyledDetail>
-            <StyledPropertyName>Pickup ID: </StyledPropertyName>
-            <StyledPropertyValue>{pickupId}</StyledPropertyValue>
-          </StyledDetail>
-          <StyledDetail>
-            <StyledPropertyName>ETA: </StyledPropertyName>
-            <StyledPropertyValue>{eta}</StyledPropertyValue>
-          </StyledDetail>
-          <StyledDetail>
-            <StyledPropertyName>Adress: </StyledPropertyName>
-            <StyledPropertyValue>{adress}</StyledPropertyValue>
-          </StyledDetail>
-        </StyledDetailsContainer>
-        <IconsWrapper>
-          <StyledIcon onClick={onClickChecked} src={checkedIcon} />
-          <StyledIcon src={personIcon} onClick={() => navigate("/family")} />
-        </IconsWrapper>
-      </Wrapper>
+      <StyledImage src={pickupImg} />
+      <StyledDetailsContainer>
+        <StyledDetail>
+          <StyledPropertyName>Pickup ID</StyledPropertyName>
+          <StyledPropertyValue>{pickupId}</StyledPropertyValue>
+        </StyledDetail>
+        <StyledDetail>
+          <StyledPropertyName>ETA</StyledPropertyName>
+          <StyledPropertyValue>{dayjs(eta).format("dddd MM/YY")}</StyledPropertyValue>
+        </StyledDetail>
+        <StyledDetail>
+          <StyledPropertyName>Adress: </StyledPropertyName>
+          <StyledPropertyValue>{adress}</StyledPropertyValue>
+        </StyledDetail>
+      </StyledDetailsContainer>
+      <IconsWrapper>
+        <Icon size="md" onClick={onClickChecked} url={checkedIcon} />
+        <Icon size="md" url={personIcon} onClick={() => navigate("/family")} />
+      </IconsWrapper>
     </StyledPaper>
   );
 };

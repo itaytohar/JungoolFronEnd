@@ -29,7 +29,7 @@ export const CardTemplate: React.FC<CardTemplate> = ({
         <IconsContainer>
           <Icon
             url={person}
-            text="Person"
+            text="Delegate"
             onClick={() => navigate("/family")}
           />
           <Icon

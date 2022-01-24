@@ -16,7 +16,7 @@ export const StyledHeaderWrapper = styled.div`
   position: relative;
 `;
 
-export const HeaderContent = styled.div`
+export const HeaderContent = styled.div<{ isHome?: boolean }>`
   display: flex;
   align-items: center;
   font-size: 25px;
@@ -24,7 +24,7 @@ export const HeaderContent = styled.div`
   color: ${({ theme }) => theme.colors.previewHeaderContent};
   padding-top: 8px;
   width: 170px;
-  display: inline-flex;
+  display: ${({ isHome }) => (isHome ? "inline-flex" : "inline-block")};
 `;
 
 export const StyledLabelThin = styled.span`
@@ -47,7 +47,7 @@ export const BodyContainer = styled.div<{ isHome?: boolean }>`
 export const BackButton = styled.button`
   position: absolute;
   top: 50%;
-  left: 10%;
+  left: 8%;
   transform: translate(-50%, -50%);
   background: none;
   color: inherit;
@@ -56,7 +56,12 @@ export const BackButton = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
-export const Avatar = styled.img``;
+export const Avatar = styled.img`
+  object-fit: contain;
+  padding-top: 4px;
+  width: 50px;
+  height: 80%;
+`;
 
 export const StyledLogo = styled.img`
   margin-inline-start: 48px;

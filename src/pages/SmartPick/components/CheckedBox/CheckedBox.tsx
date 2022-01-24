@@ -8,7 +8,8 @@ import {
   StyledCancel,
 } from "./style";
 const checkmark = require("../../../../assets/images/checkmark.png");
-const checked = require("../../../../assets/icons/checked.png");
+import checkedIcon from "../../../../assets/icons/checked.svg";
+
 const cancel = require("../../../../assets/icons/cancel.png");
 
 export const CheckedBox: React.FC<{
@@ -21,7 +22,7 @@ export const CheckedBox: React.FC<{
     </ImageContaier>
     <StyledText>Are you sure that your task completed?</StyledText>
     <IconsContainer>
-      <StyledIcon onClick={() => onCheck()} src={checked} />
+      <StyledIcon onClick={() => onCheck()} src={checkedIcon} />
       <StyledCancel onClick={() => onClose()} src={cancel} />
     </IconsContainer>
   </Wrapper>
