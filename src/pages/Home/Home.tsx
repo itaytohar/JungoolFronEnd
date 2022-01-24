@@ -8,15 +8,10 @@ import { ThemeType } from "../../global-styles/theme";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
-import { homeURL } from "../../varaibles";
+import { addOtherTaskURL, homeURL } from "../../varaibles";
 import { OtherTasks } from "./Components/OtherTasks/OtherTasks";
 import { Section } from "./Components/Section/Section";
-import {
-  HeaderContainer,
-  MainLayout,
-  SectionsContainer,
-  StyledHeader,
-} from "./style";
+import { SectionsContainer } from "./style";
 export const Home: React.FC = () => {
   interface ISmartPick {
     allPackages: string;
@@ -52,7 +47,7 @@ export const Home: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [isOtherTasksOpen, setIsOtherTasksOpen] = useState(false);
-  const { setCustomer } = useContext(CustomerContext);
+  const { customer, setCustomer } = useContext(CustomerContext);
   const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   const params = useParams();
@@ -113,8 +108,21 @@ export const Home: React.FC = () => {
   const theme = useTheme() as ThemeType;
   const { smartPick, planRenewal, warrantyExpiration } = insights;
 
+  const onSaveOtherTask = (value: string) => {
+    setIsOtherTasksOpen(false);
+    if (!value) return;
+    axios({
+      method: "POST",
+      url: addOtherTaskURL,
+      data: {
+        CustomerID: customer,
+        TaskData: value,
+      },
+    });
+  };
+
   return (
-    <PreviewLayout header="MY Jungool">
+    <PreviewLayout header="MY Jungool" isHome>
       {!loading ? (
         <>
           <SectionsContainer isOtherTasksOpen={isOtherTasksOpen}>
@@ -196,8 +204,7 @@ export const Home: React.FC = () => {
           </SectionsContainer>
           <OtherTasks
             onSave={(val) => {
-              console.log(`Task Content: "${val}" Saved!`);
-              setIsOtherTasksOpen(false);
+              onSaveOtherTask(val);
             }}
             isOpen={isOtherTasksOpen}
             toggle={() => setIsOtherTasksOpen((prev) => !prev)}

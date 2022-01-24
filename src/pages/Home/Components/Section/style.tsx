@@ -10,13 +10,15 @@ export const StyledSection = styled.div<{ backgroundColor: string }>`
   overflow: hidden;
 `;
 
-export const StyledContentWrapper = styled.div`
-  margin-inline-start: 12px;
+export const StyledContentWrapper = styled.div<{
+  spacingButtom?: number;
+}>`
+  margin-bottom: ${({ spacingButtom }) =>
+    spacingButtom && spacingButtom * 8 + "px"};
   color: ${({ color }) => color};
   display: flex;
   flex-direction: column;
   white-space: pre-wrap;
-  margin-block-end: 12px;
 `;
 
 export const StyledContentHeader = styled.h4`
@@ -28,6 +30,7 @@ export const StyledContentHeader = styled.h4`
 
 export const SecondContentHeader = styled.p`
   font-weight: bold;
+  font-size: 15px;
 `;
 
 export const StyledContent = styled.p``;
@@ -35,5 +38,6 @@ export const StyledContent = styled.p``;
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 55%;
+  width: 50%;
+  margin-inline-start: 12px;
 `;

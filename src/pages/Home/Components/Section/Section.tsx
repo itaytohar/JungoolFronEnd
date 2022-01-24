@@ -45,7 +45,7 @@ export const Section: React.FC<ISection> = ({
       {reversed ? (
         <>
           <Wrapper>
-            <StyledContentWrapper color={firstContent.color}>
+            <StyledContentWrapper spacingButtom={2} color={firstContent.color}>
               <StyledContentHeader>
                 {firstContent.subHeader}
               </StyledContentHeader>
@@ -64,7 +64,7 @@ export const Section: React.FC<ISection> = ({
         <>
           <DoughtnutChart data={graphProps.data} colors={graphProps.colors} />
           <Wrapper>
-            <StyledContentWrapper color={firstContent.color}>
+            <StyledContentWrapper spacingButtom={2} color={firstContent.color}>
               <StyledContentHeader>
                 {firstContent.subHeader}
               </StyledContentHeader>

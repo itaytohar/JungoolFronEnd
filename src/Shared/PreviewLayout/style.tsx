@@ -12,7 +12,7 @@ export const StyledHeaderWrapper = styled.div`
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
 `;
 
@@ -23,12 +23,13 @@ export const HeaderContent = styled.div`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.previewHeaderContent};
   padding-top: 8px;
-  display: inline-block;
+  width: 170px;
+  display: inline-flex;
 `;
 
 export const StyledLabelThin = styled.span`
   font-family: "Heebo", sans-serif;
-  margin-inline-end: 4px;
+  margin-inline-end: 2px;
 `;
 export const StyledLabelThick = styled.span`
   font-family: "Roboto", sans-serif;
@@ -53,17 +54,14 @@ export const BackButton = styled.button`
   cursor: pointer;
   outline: inherit;
 `;
-export const Avatar = styled.img`
-  margin-inline-end: 12px;
+export const Avatar = styled.img``;
+
+export const StyledLogo = styled.img`
+  margin-inline-start: 48px;
+  margin-inline-end: 8px;
 `;
 
 export const Wrapper = styled.div`
-  height: 100%;
   display: flex;
   align-items: center;
-`;
-
-export const StyledLogo = styled.img`
-  margin-inline-start: 40px;
-  margin-inline-end: 8px;
 `;

@@ -23,9 +23,9 @@ export const StyledOpenButton = styled.button`
   justify-content: center;
   align-items: center;
   width: 90%;
-  height: 90%;
+  height: 100%;
   padding: 12px;
-  background-color: ${({ theme }) => theme.colors.warranty.contentColor};
+  background-color: ${({ theme }) => theme.colors.addButton};
   color: white;
   border-radius: 24px;
   border: none;

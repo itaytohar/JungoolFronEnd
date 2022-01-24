@@ -8,6 +8,7 @@ import {
   Wrapper,
 } from "./style";
 import logo from "../../assets/images/Logo.svg";
+import jungool from "../../assets/images/jungool.svg";
 import avatar from "../../assets/images/avatar.svg";
 
 import {
@@ -19,11 +20,13 @@ import {
 
 interface IPreviewLayout {
   header: string;
+  isHome?: boolean;
 }
 
 export const PreviewLayout: React.FC<IPreviewLayout> = ({
   header,
   children,
+  isHome,
 }) => {
   // const navigate = useNavigate();
   const headerArr = header.split(" ");
@@ -31,10 +34,14 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
     <StyledLayout>
       <StyledHeaderWrapper>
         <Wrapper>
-        <StyledLogo src={logo} />
+          <StyledLogo src={logo} />
           <HeaderContent>
             <StyledLabelThin>{headerArr[0]}</StyledLabelThin>
-            <StyledLabelThick>{headerArr[1]}</StyledLabelThick>
+            {isHome ? (
+              <img src={jungool} />
+            ) : (
+              <StyledLabelThick>{headerArr[1]}</StyledLabelThick>
+            )}
           </HeaderContent>
         </Wrapper>
         <Avatar src={avatar} />
