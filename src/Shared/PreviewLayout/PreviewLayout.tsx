@@ -8,8 +8,9 @@ import {
   Wrapper,
 } from "./style";
 import logo from "../../assets/images/Logo.svg";
+import back from "../../assets/icons/back.svg";
 import jungool from "../../assets/images/jungool.svg";
-import avatar from "../../assets/images/avatar.svg";
+import avatar from "../../assets/images/avatar.png";
 
 import {
   BackButton,
@@ -17,6 +18,7 @@ import {
   StyledHeaderWrapper,
   StyledLayout,
 } from "./style";
+import { Icon } from "../Icon/Icon";
 
 interface IPreviewLayout {
   header: string;
@@ -28,14 +30,19 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
   children,
   isHome,
 }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const headerArr = header.split(" ");
   return (
     <StyledLayout>
       <StyledHeaderWrapper>
+        {!isHome && (
+          <BackButton onClick={() => navigate(-1)}>
+            <Icon url={back} />
+          </BackButton>
+        )}
         <Wrapper>
           <StyledLogo src={logo} />
-          <HeaderContent>
+          <HeaderContent isHome={isHome}>
             <StyledLabelThin>{headerArr[0]}</StyledLabelThin>
             {isHome ? (
               <img src={jungool} />
@@ -46,13 +53,10 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
         </Wrapper>
         <Avatar src={avatar} />
       </StyledHeaderWrapper>
-      <BodyContainer>{children}</BodyContainer>
+      <BodyContainer isHome={isHome}>{children}</BodyContainer>
     </StyledLayout>
   );
 };
 
 {
-  /* <BackButton onClick={() => navigate(-1)}>
-          <StyledIcon src={back} />
-        </BackButton> */
 }

@@ -5,7 +5,7 @@ import { useTheme } from "styled-components";
 import { ThemeType } from "../../global-styles/theme";
 import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
-import { List } from "../../Shared/WarrantyPlanCard/style";
+import { List } from "../../Shared/CardTemplate/style";
 import { insightURL } from "../../varaibles";
 import { Card } from "./components/Card";
 
@@ -46,7 +46,7 @@ export const Plans: React.FC = () => {
   const theme = useTheme() as ThemeType;
 
   return (
-    <PreviewLayout header="Plans">
+    <PreviewLayout header="my plans">
       <List>
         {plans ? (
           plans.plans.map(({ planID, ...planProps }) => (
