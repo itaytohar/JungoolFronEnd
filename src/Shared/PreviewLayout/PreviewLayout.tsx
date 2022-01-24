@@ -46,7 +46,7 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
         </Wrapper>
         <Avatar src={avatar} />
       </StyledHeaderWrapper>
-      <BodyContainer>{children}</BodyContainer>
+      <BodyContainer isHome={isHome}>{children}</BodyContainer>
     </StyledLayout>
   );
 };

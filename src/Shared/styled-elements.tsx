@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const StyledPaper = styled.div`
-  background-color: white;
-  height: 120px;
-  width: 95%;
-  padding: 8px;
-`;
-
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -21,38 +14,34 @@ export const StyledImage = styled.img`
 `;
 
 export const StyledDetailsContainer = styled.div`
-  margin-inline-start: 8px;
+  color: ${({ theme }) => theme.colors.previewHeaderBackground};
   display: flex;
   flex-direction: column;
-  justify-self: stretch;
+  height: 100%;
+  width: 40%;
+  white-space: nowrap;
+  justify-content: space-around;
 `;
 
 export const StyledDetail = styled.div`
   display: flex;
   flex-direction: column;
   margin-block-end: 8px;
+  color: ${({ color }) => color};
 `;
 
 export const StyledPropertyName = styled.p`
-  font-weight: bold;
-  font-size: 14px;
-  white-space: pre;
+  font-size: 12px;
+  font-weight: 200;
 `;
 export const StyledPropertyValue = styled.p`
-  color: #2699fb;
+  font-size: 16px;
 `;
 
-export const IconsWrapper = styled.div`
+export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-inline-start: 8px;
-  align-items: center;
+  height: 100%;
   justify-content: space-around;
-  align-self: stretch;
-`;
-
-export const StyledIcon = styled.img`
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
+  text-align: center;
 `;

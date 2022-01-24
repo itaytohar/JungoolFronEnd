@@ -10,9 +10,9 @@ export const CollapsedParent = styled.div<{
   isOpen: boolean;
   type?: "full" | "section";
 }>`
-  margin-block-end: ${({ type }) => (type === "full" ? 0 : "8px")};
+  margin-block-end: ${({ type }) => (type === "full" ? 0 : "16px")};
   height: ${({ isOpen, type }) =>
-    isOpen ? (type === "full" ? "90%" : "400px") : 0};
+    isOpen ? (type === "full" ? "90%" : "300px") : 0};
   width: 100%;
   overflow: hidden;
   transition: height 0.5s ease-in-out;

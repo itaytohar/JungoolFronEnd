@@ -2,15 +2,12 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   width: 100%;
-  height: 120px;
+  height: 180px;
   background-color: #fff;
   display: flex;
   align-items: center;
-`;
-
-export const StyledButton = styled.button`
-  width: 100px;
-  height: 15px;
+  justify-content: space-between;
+  padding: 16px;
 `;
 
 export const List = styled.div`
@@ -19,7 +16,11 @@ export const List = styled.div`
   height: 100%;
 `;
 
-export const StyledIcon = styled.img`
-  width: 30px;
-  height: 30px;
+export const IconsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  width: 80px;
+  align-items: center;
+  justify-content: space-between;
 `;

@@ -19,7 +19,7 @@ export const theme = {
       contentColor: "#49C4A8",
       graphColors: ["#33D6AF", "#D9E030"],
     },
-    loaderColor: "#33D6AF",
+    loaderColor: "black",
     divider: "#2699FB",
     addButton: "#33D6AF",
     previewHeaderBackground: "#33D6AF",
