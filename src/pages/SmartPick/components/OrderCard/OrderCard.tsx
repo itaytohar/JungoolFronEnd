@@ -9,6 +9,8 @@ import {
   StyledPropertyValue,
 } from "../../../../Shared/styled-elements";
 
+import placeHolder from "../../../../assets/images/placeholder.png";
+
 interface IOrderCard {
   orderID: string;
   trackingID: string;
@@ -26,14 +28,17 @@ export const OrderCard: React.FC<IOrderCard> = ({
   supplier,
   tag,
 }) => {
+  let src;
+  try {
+    src = require(`../../../../assets/images/suppliers/${supplier
+      .trim()
+      .toLowerCase()}.png`);
+  } catch (err) {
+    src = placeHolder;
+  }
   return (
     <CardWrapper>
-      <StyledImage
-        src={require(`../../../../assets/images/suppliers/${supplier
-          .trim()
-          .toLowerCase()}.png`)}
-        alt="supplier"
-      />
+      <StyledImage alt="supplier" src={src} />
       <StyledDetailsContainer>
         <StyledDetail>
           <StyledPropertyName>Order ID</StyledPropertyName>
