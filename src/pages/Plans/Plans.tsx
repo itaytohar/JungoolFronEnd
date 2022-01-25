@@ -41,18 +41,15 @@ export const Plans: React.FC = () => {
     };
   }, [params]);
 
-
-  return (
+  return plans ? (
     <PreviewLayout header="my plans">
       <List>
-        {plans ? (
-          plans.plans.map(({ planID, ...planProps }) => (
-            <Card key={planID} {...planProps} />
-          ))
-        ) : (
-          <Loader />
-        )}
+        {plans.plans.map(({ planID, ...planProps }) => (
+          <Card key={planID} {...planProps} />
+        ))}
       </List>
     </PreviewLayout>
+  ) : (
+    <Loader />
   );
 };

@@ -36,7 +36,7 @@ export const Family: React.FC = () => {
         customerID: customer,
       },
     }).then((res) => {
-      isMounted && setFamily(res.data);
+      isMounted && setTimeout(() => setFamily(res.data), 1000);
     });
 
     return () => {
@@ -44,35 +44,29 @@ export const Family: React.FC = () => {
     };
   }, [customer]);
 
-  return (
+  return family ? (
     <PreviewLayout header="FAMILY TASKS" bgc="white">
-      {family ? (
-        <GridContainer>
-          {family.community.map(
-            ({ customerID, memberType, ...memberProps }) => {
-              let url: string;
-              switch (memberType) {
-                case "Father":
-                  url = "father";
-                  break;
-                case "Son":
-                  url = "son-" + Math.floor(Math.random() * 2);
-                  break;
-                case "Daughter":
-                  url = "daughter-" + Math.floor(Math.random() * 3);
-                  break;
-                case "Mother":
-                  url = "mother";
-                  break;
-              }
-              members.push(url);
-              return <MemberCard url={url} key={customerID} {...memberProps} />;
-            }
-          )}
-        </GridContainer>
-      ) : (
-        <Loader />
-      )}
+      <GridContainer>
+        {family.community.map(({ customerID, memberType, ...memberProps }) => {
+          let url: string;
+          switch (memberType) {
+            case "Father":
+              url = "father";
+              break;
+            case "Son":
+              url = "son-" + Math.floor(Math.random() * 2);
+              break;
+            case "Daughter":
+              url = "daughter-" + Math.floor(Math.random() * 3);
+              break;
+            case "Mother":
+              url = "mother";
+              break;
+          }
+          members.push(url);
+          return <MemberCard url={url} key={customerID} {...memberProps} />;
+        })}
+      </GridContainer>
       <StyledFooterImage>
         <StyledMapImage src={networkMap} />
         {members.map((member, idx) => (
@@ -85,5 +79,7 @@ export const Family: React.FC = () => {
         ))}
       </StyledFooterImage>
     </PreviewLayout>
+  ) : (
+    <Loader />
   );
 };
