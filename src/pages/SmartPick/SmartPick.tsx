@@ -67,28 +67,26 @@ export const SmartPick: React.FC = () => {
     navigate(`/home/${customer}`);
   };
 
-  return (
+  return pickOrder ? (
     <PreviewLayout header="SMART PICK">
-      {pickOrder ? (
-        <>
-          <PickUpSection
-            adress={pickOrder.pickingAddress}
-            eta={pickOrder.bestPickingDate}
-            pickupId={pickOrder.insightID}
-            onClickChecked={() => setIsModalOpen(true)}
-          />
-          <OrdersContainer>
-            {pickOrder.orders.map((order) => (
-              <OrderCard key={order.orderID} {...order} />
-            ))}
-          </OrdersContainer>
-        </>
-      ) : (
-        <Loader />
-      )}
+      <>
+        <PickUpSection
+          adress={pickOrder.pickingAddress}
+          eta={pickOrder.bestPickingDate}
+          pickupId={pickOrder.insightID}
+          onClickChecked={() => setIsModalOpen(true)}
+        />
+        <OrdersContainer>
+          {pickOrder.orders.map((order) => (
+            <OrderCard key={order.orderID} {...order} />
+          ))}
+        </OrdersContainer>
+      </>
       <Modal isOpen={isModalOpen} onClose={onClose}>
         <CheckedBox onClose={onClose} onCheck={onCheck} />
       </Modal>
     </PreviewLayout>
+  ) : (
+    <Loader />
   );
 };
