@@ -34,7 +34,10 @@ export const StyledPropertyName = styled.p`
   font-size: 12px;
   font-weight: 200;
 `;
-export const StyledPropertyValue = styled.p`
+export const StyledPropertyValue = styled.p<{ ellipsis?: boolean }>`
+  ${({ ellipsis }) => ellipsis && `white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;`}
   font-size: 16px;
 `;
 

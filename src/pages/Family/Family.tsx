@@ -5,7 +5,12 @@ import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
 import { communityURL } from "../../varaibles";
 import { MemberCard } from "./components/MemberCard/MemberCard";
-import { GridContainer, StyledFooterImage, StyledMapImage } from "./style";
+import {
+  GridContainer,
+  MemberMap,
+  StyledFooterImage,
+  StyledMapImage,
+} from "./style";
 const networkMap = require("../../assets/images/network-map.png");
 
 export const Family: React.FC = () => {
@@ -20,7 +25,7 @@ export const Family: React.FC = () => {
 
   const [family, setFamily] = useState<IFamily | null>(null);
   const { customer } = useGetCustomer();
-
+  const members: string[] = [];
   useEffect(() => {
     let isMounted = true;
     if (!customer) return;
@@ -45,21 +50,22 @@ export const Family: React.FC = () => {
         <GridContainer>
           {family.community.map(
             ({ customerID, memberType, ...memberProps }) => {
-              let url;
+              let url: string;
               switch (memberType) {
                 case "Father":
                   url = "father";
                   break;
                 case "Son":
-                  url = "son-" + Math.floor(Math.random() * 3);
+                  url = "son-" + Math.floor(Math.random() * 2);
                   break;
                 case "Daughter":
-                  url = "mother";
+                  url = "daughter-" + Math.floor(Math.random() * 3);
                   break;
                 case "Mother":
                   url = "mother";
                   break;
               }
+              members.push(url);
               return <MemberCard url={url} key={customerID} {...memberProps} />;
             }
           )}
@@ -69,6 +75,14 @@ export const Family: React.FC = () => {
       )}
       <StyledFooterImage>
         <StyledMapImage src={networkMap} />
+        {members.map((member, idx) => (
+          <MemberMap
+            top={Math.random() * 80 + 10}
+            right={Math.random() * 80 + 10}
+            key={idx}
+            src={require(`../../assets/images/family/${member}.png`)}
+          />
+        ))}
       </StyledFooterImage>
     </PreviewLayout>
   );

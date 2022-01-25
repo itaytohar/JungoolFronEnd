@@ -121,98 +121,95 @@ export const Home: React.FC = () => {
     });
   };
 
-  return (
+  return !loading ? (
     <PreviewLayout header="MY Jungool" isHome>
-      {!loading ? (
-        <>
-          <SectionsContainer isOtherTasksOpen={isOtherTasksOpen}>
-            <Section
-              navigateTo={smartPick && `/smartpick/${smartPick.insightID}`}
-              backgroundColor={theme.colors.smartPick.backgroundColor}
-              graphProps={{
-                data: smartPick
-                  ? createData(smartPick.allPackages, smartPick.pickPackages)
-                  : createData("0", "0"),
-                colors: theme.colors.smartPick.graphColors,
-              }}
-              firstContent={{
-                text: "packages",
-                subHeader: "smart pick",
-                color: theme.colors.smartPick.headerColor,
-              }}
-              secondContent={{
-                text: smartPick
-                  ? `will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
-                  : `No Packages yet`,
-                subHeader: smartPick
-                  ? dayjs(smartPick.bestPickingDate).format("dddd YY/MM")
-                  : ``,
-                color: theme.colors.smartPick.contentColor,
-              }}
-            />
-            <Section
-              navigateTo={planRenewal && `/plan/${planRenewal.insightID}`}
-              reversed
-              backgroundColor={theme.colors.renewalPlans.backgroundColor}
-              graphProps={{
-                data: planRenewal
-                  ? createData(planRenewal.plansCount, planRenewal.renewalCount)
-                  : createData("0", "0"),
-                colors: theme.colors.renewalPlans.graphColors,
-              }}
-              firstContent={{
-                subHeader: "plan renewal",
-                text: "Subsciptions",
-                color: theme.colors.renewalPlans.headerColor,
-              }}
-              secondContent={{
-                subHeader: ``,
-                text: planRenewal
-                  ? `${planRenewal.renewalCount} plans are waiting this month for renewal.`
-                  : "No Plans yet",
-                color: theme.colors.renewalPlans.contentColor,
-              }}
-            />
-            <Section
-              navigateTo={
-                warrantyExpiration &&
-                `/warranty/${warrantyExpiration.insightID}`
-              }
-              backgroundColor={theme.colors.warranty.backgroundColor}
-              graphProps={{
-                data: warrantyExpiration
-                  ? createData(
-                      warrantyExpiration.warrantyCount,
-                      warrantyExpiration.expiredCount
-                    )
-                  : createData("0", "0"),
-                colors: theme.colors.warranty.graphColors,
-              }}
-              firstContent={{
-                subHeader: "warranty expiration",
-                text: "",
-                color: theme.colors.warranty.headerColor,
-              }}
-              secondContent={{
-                text: warrantyExpiration
-                  ? `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`
-                  : "No Warranties yet",
-                subHeader: "",
-                color: theme.colors.warranty.contentColor,
-              }}
-            />
-          </SectionsContainer>
-          <OtherTasks
-            onSave={(val) => {
-              onSaveOtherTask(val);
+      <>
+        <SectionsContainer isOtherTasksOpen={isOtherTasksOpen}>
+          <Section
+            navigateTo={smartPick && `/smartpick/${smartPick.insightID}`}
+            backgroundColor={theme.colors.smartPick.backgroundColor}
+            graphProps={{
+              data: smartPick
+                ? createData(smartPick.allPackages, smartPick.pickPackages)
+                : createData("0", "0"),
+              colors: theme.colors.smartPick.graphColors,
             }}
-            isOpen={isOtherTasksOpen}
-            toggle={() => setIsOtherTasksOpen((prev) => !prev)}
+            firstContent={{
+              text: "packages",
+              subHeader: "smart pick",
+              color: theme.colors.smartPick.headerColor,
+            }}
+            secondContent={{
+              text: smartPick
+                ? `will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
+                : `No Packages yet`,
+              subHeader: smartPick
+                ? dayjs(smartPick.bestPickingDate).format("dddd YY/MM")
+                : ``,
+              color: theme.colors.smartPick.contentColor,
+            }}
           />
-        </>
-      ) : (
-        <Loader />
-      )}
+          <Section
+            navigateTo={planRenewal && `/plan/${planRenewal.insightID}`}
+            reversed
+            backgroundColor={theme.colors.renewalPlans.backgroundColor}
+            graphProps={{
+              data: planRenewal
+                ? createData(planRenewal.plansCount, planRenewal.renewalCount)
+                : createData("0", "0"),
+              colors: theme.colors.renewalPlans.graphColors,
+            }}
+            firstContent={{
+              subHeader: "plan renewal",
+              text: "Subsciptions",
+              color: theme.colors.renewalPlans.headerColor,
+            }}
+            secondContent={{
+              subHeader: ``,
+              text: planRenewal
+                ? `${planRenewal.renewalCount} plans are waiting this month for renewal.`
+                : "No Plans yet",
+              color: theme.colors.renewalPlans.contentColor,
+            }}
+          />
+          <Section
+            navigateTo={
+              warrantyExpiration && `/warranty/${warrantyExpiration.insightID}`
+            }
+            backgroundColor={theme.colors.warranty.backgroundColor}
+            graphProps={{
+              data: warrantyExpiration
+                ? createData(
+                    warrantyExpiration.warrantyCount,
+                    warrantyExpiration.expiredCount
+                  )
+                : createData("0", "0"),
+              colors: theme.colors.warranty.graphColors,
+            }}
+            firstContent={{
+              subHeader: "warranty expiration",
+              text: "",
+              color: theme.colors.warranty.headerColor,
+            }}
+            secondContent={{
+              text: warrantyExpiration
+                ? `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`
+                : "No Warranties yet",
+              subHeader: "",
+              color: theme.colors.warranty.contentColor,
+            }}
+          />
+        </SectionsContainer>
+        <OtherTasks
+          onSave={(val) => {
+            onSaveOtherTask(val);
+          }}
+          isOpen={isOtherTasksOpen}
+          toggle={() => setIsOtherTasksOpen((prev) => !prev)}
+        />
+      </>
     </PreviewLayout>
+  ) : (
+    <Loader />
   );
 };

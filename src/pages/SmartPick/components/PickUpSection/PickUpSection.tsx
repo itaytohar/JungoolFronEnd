@@ -2,16 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "../../../../Shared/Icon/Icon";
 import {
   StyledDetail,
-  StyledDetailsContainer,
-  StyledImage,
   StyledPropertyName,
   StyledPropertyValue,
 } from "../../../../Shared/styled-elements";
-import { IconsWrapper, StyledPaper } from "./style";
+import { IconsWrapper, StyledImage, StyledPaper } from "./style";
 const pickupImg = require("../../../../assets/images/package.png");
 import checkedIcon from "../../../../assets/icons/checked.svg";
 import dayjs from "dayjs";
-const personIcon = require("../../../../assets/icons/person.png");
+import personIcon from "../../../../assets/icons/person.svg";
+import { StyledDetailsContainer } from "../OrderCard/style";
 
 interface IPickUpSection {
   pickupId: string;

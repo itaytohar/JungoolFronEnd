@@ -2,7 +2,7 @@ export const theme = {
   colors: {
     innerText: "#28AE68",
     smartPick: {
-      backgroundColor: "rgb(247,151,68,5%)",
+      backgroundColor: "rgb(255,250,246)",
       headerColor: "#F8AF6F",
       contentColor: "#49C4A8",
       graphColors: ["#33D6AF", "#F8AF6F"],

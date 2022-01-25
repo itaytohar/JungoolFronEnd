@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { ThemeType } from "../../global-styles/theme";
 import { useGetCustomer } from "../../hooks/useGetCustomer";
@@ -15,7 +15,7 @@ import { OrdersContainer } from "./style";
 
 export const SmartPick: React.FC = () => {
   const params = useParams();
-
+  const navigate = useNavigate();
   interface IPickOrder {
     bestPickingDate: string;
     insightID: string;
@@ -64,6 +64,7 @@ export const SmartPick: React.FC = () => {
       if (res.data === "OK") onClose();
       else console.log(res);
     });
+    navigate(`/home/${customer}`);
   };
 
   return (
