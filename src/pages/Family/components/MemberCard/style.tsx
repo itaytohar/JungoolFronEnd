@@ -8,8 +8,8 @@ export const Container = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   padding: 2px;
   border: 1px solid ${({ theme }) => theme.colors.smartPick.contentColor};
   border-radius: 50%;
@@ -27,8 +27,9 @@ export const StyledLabel = styled.p`
   margin-inline-start: 2px;
   font-size: 17px;
 `;
-export const StyledNumber = styled.h1`
+export const StyledNumber = styled.p`
   color: white;
+  font-size: 25px;
 `;
 
 export const NumberContainer = styled.div`
@@ -41,8 +42,8 @@ export const NumberContainer = styled.div`
   transform: translate(-50%, 0);
   left: 50%;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
 `;
 
 export const Wrapper = styled.div`

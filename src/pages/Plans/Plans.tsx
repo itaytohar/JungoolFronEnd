@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useTheme } from "styled-components";
-import { ThemeType } from "../../global-styles/theme";
 import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
 import { List } from "../../Shared/CardTemplate/style";
@@ -43,7 +41,6 @@ export const Plans: React.FC = () => {
     };
   }, [params]);
 
-  const theme = useTheme() as ThemeType;
 
   return (
     <PreviewLayout header="my plans">

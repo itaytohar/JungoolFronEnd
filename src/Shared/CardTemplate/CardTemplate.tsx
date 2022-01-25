@@ -8,7 +8,7 @@ import { IconsContainer } from "./style";
 import fix from "../../assets/icons/fix.svg";
 import renew from "../../assets/icons/renew.svg";
 import view from "../../assets/icons/view.svg";
-import person from "../../assets/icons/person.png";
+import person from "../../assets/icons/person.svg";
 import { Icon } from "../Icon/Icon";
 
 interface CardTemplate {

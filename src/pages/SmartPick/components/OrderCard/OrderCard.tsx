@@ -1,15 +1,14 @@
-import { CardWrapper } from "./style";
+import { CardWrapper, StyledDetailsContainer } from "./style";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import {
   StyledDetail,
-  StyledDetailsContainer,
-  StyledImage,
   StyledPropertyName,
   StyledPropertyValue,
 } from "../../../../Shared/styled-elements";
 
 import placeHolder from "../../../../assets/images/placeholder.png";
+import { StyledImage } from "../PickUpSection/style";
 
 interface IOrderCard {
   orderID: string;
@@ -47,8 +46,8 @@ export const OrderCard: React.FC<IOrderCard> = ({
         <StyledDetail>
           <StyledPropertyName>Tag: </StyledPropertyName>
           <Tippy content={tag}>
-            <StyledPropertyValue>
-              {tag.substring(0, 15) + "..."}
+            <StyledPropertyValue ellipsis>
+              {tag}
             </StyledPropertyValue>
           </Tippy>
         </StyledDetail>
