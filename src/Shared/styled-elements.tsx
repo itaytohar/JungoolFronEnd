@@ -9,24 +9,32 @@ export const Wrapper = styled.div`
 
 export const StyledImage = styled.img`
   object-fit: contain;
-  height: 90px;
-  width: 90px;
+  height: 60px;
+  width: 60px;
 `;
 
-export const StyledDetailsContainer = styled.div`
+export const Grid = styled.div`
+  display: grid;
+  height: 100%;
+  grid-template-columns: minmax(60px, 80px) auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  justify-content: center;
+  row-gap: 12px;
+  column-gap: 12px;
+`;
+
+export const StyledDetail = styled.div<{
+  alignText?: boolean;
+  gridStart?: number;
+  gridEnd?: number;
+}>`
+  ${({ alignText }) => alignText && `text-align:center;`}
+  grid-row-start: ${({ gridStart }) => gridStart && gridStart};
+  grid-row-end: ${({ gridEnd }) => gridEnd && gridEnd};
   color: ${({ theme }) => theme.colors.previewHeaderBackground};
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 40%;
-  white-space: nowrap;
-  justify-content: space-evenly;
-`;
-
-export const StyledDetail = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-block-end: 8px;
   color: ${({ color }) => color};
 `;
 
@@ -35,16 +43,18 @@ export const StyledPropertyName = styled.p`
   font-weight: 200;
 `;
 export const StyledPropertyValue = styled.p<{ ellipsis?: boolean }>`
-  ${({ ellipsis }) => ellipsis && `white-space: nowrap;
+  ${({ ellipsis }) =>
+    ellipsis &&
+    `white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;`}
   font-size: 16px;
 `;
 
-export const StyledWrapper = styled.div`
+export const ImgWrapper = styled.div`
+  grid-row-start: 1;
+  grid-row-end: 3;
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 `;

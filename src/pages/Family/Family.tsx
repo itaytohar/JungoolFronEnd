@@ -12,20 +12,19 @@ import {
   StyledMapImage,
 } from "./style";
 const networkMap = require("../../assets/images/network-map.png");
+let members: string[] = [];
 
 export const Family: React.FC = () => {
-  interface IFamily {
-    community: {
-      customerID: string;
-      fullName: string;
-      numberOfTasks: string;
-      memberType: "Father" | "Daughter" | "Son" | "Mother";
-    }[];
-  }
+  type Member = {
+    customerID: string;
+    fullName: string;
+    numberOfTasks: string;
+    memberType: "Father" | "Daughter" | "Son" | "Mother";
+    url: string;
+  };
 
-  const [family, setFamily] = useState<IFamily | null>(null);
+  const [family, setFamily] = useState<Member[] | null>(null);
   const { customer } = useGetCustomer();
-  const members: string[] = [];
   useEffect(() => {
     let isMounted = true;
     if (!customer) return;
@@ -36,7 +35,29 @@ export const Family: React.FC = () => {
         customerID: customer,
       },
     }).then((res) => {
-      isMounted && setTimeout(() => setFamily(res.data), 1000);
+      if (!isMounted) return;
+      members = [];
+      const { community } = res.data;
+      community.map((member: Member) => {
+        let url;
+        switch (member.memberType) {
+          case "Father":
+            url = "father";
+            break;
+          case "Son":
+            url = "son-" + Math.floor(Math.random() * 2);
+            break;
+          case "Daughter":
+            url = "daughter-" + Math.floor(Math.random() * 3);
+            break;
+          case "Mother":
+            url = "mother";
+            break;
+        }
+        member.url = url;
+        members.push(url);
+      });
+      setFamily(community);
     });
 
     return () => {
@@ -47,36 +68,22 @@ export const Family: React.FC = () => {
   return family ? (
     <PreviewLayout header="FAMILY TASKS" bgc="white">
       <GridContainer>
-        {family.community.map(({ customerID, memberType, ...memberProps }) => {
-          let url: string;
-          switch (memberType) {
-            case "Father":
-              url = "father";
-              break;
-            case "Son":
-              url = "son-" + Math.floor(Math.random() * 2);
-              break;
-            case "Daughter":
-              url = "daughter-" + Math.floor(Math.random() * 3);
-              break;
-            case "Mother":
-              url = "mother";
-              break;
-          }
-          members.push(url);
-          return <MemberCard url={url} key={customerID} {...memberProps} />;
+        {family.map(({ customerID, ...memberProps }) => {
+          return <MemberCard key={customerID} {...memberProps} />;
         })}
       </GridContainer>
       <StyledFooterImage>
         <StyledMapImage src={networkMap} />
-        {members.map((member, idx) => (
-          <MemberMap
-            top={Math.random() * 80 + 10}
-            right={Math.random() * 80 + 10}
-            key={idx}
-            src={require(`../../assets/images/family/${member}.png`)}
-          />
-        ))}
+        {members.map((member, idx) => {
+          return (
+            <MemberMap
+              top={Math.random() * 80 + 10}
+              right={Math.random() * 80 + 10}
+              key={idx}
+              src={require(`../../assets/images/family/${member}.png`)}
+            />
+          );
+        })}
       </StyledFooterImage>
     </PreviewLayout>
   ) : (

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledPaper = styled.div`
   display: flex;
   background-color: ${({theme})=> theme.colors.smartPick.backgroundColor};
-  height: 150px;
+  height: 200px;
   width: 100%;
   padding: 8px 16px;
   justify-content: space-around;
@@ -28,6 +28,6 @@ export const IconsWrapper = styled.div`
 
 export const StyledIcon = styled.img`
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 `;

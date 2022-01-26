@@ -50,7 +50,7 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
         <Icon
           size="md"
           onClick={onClickChecked}
-          text="Picked"
+          text="Collected"
           url={checkedIcon}
         />
         <Icon

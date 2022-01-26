@@ -28,14 +28,14 @@ export const CardTemplate: React.FC<CardTemplate> = ({
         {children}
         <IconsContainer>
           <Icon
-            url={person}
-            text="Delegate"
-            onClick={() => navigate("/family")}
-          />
-          <Icon
             url={view}
             text="View"
             onClick={() => setIsOpen((isOpen) => !isOpen)}
+          />
+          <Icon
+            url={person}
+            text="Delegate"
+            onClick={() => navigate("/family")}
           />
           <Icon
             tooltip={`Renew ${isWarranty ? "Warranty" : "Plan"}`}
