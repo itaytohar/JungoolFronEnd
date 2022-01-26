@@ -5,7 +5,7 @@ export const StyledSection = styled.div<{ backgroundColor: string }>`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: ${({ backgroundColor }) => backgroundColor};
   overflow: hidden;
 `;
@@ -39,5 +39,4 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin-inline-start: 12px;
 `;

@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import { CardTemplate } from "../../../Shared/CardTemplate/CardTemplate";
 import {
+  Grid,
+  ImgWrapper,
   StyledDetail,
-  StyledDetailsContainer,
   StyledImage,
   StyledPropertyName,
   StyledPropertyValue,
-  StyledWrapper,
 } from "../../../Shared/styled-elements";
 import placeHolder from "../../../assets/images/placeholder.png";
 import { useTheme } from "styled-components";
@@ -42,16 +42,20 @@ export const Card: React.FC<CardProps> = ({
       isWarranty
       viewItem={<img style={{ width: "100%" }} src={url} alt="warranty" />}
     >
-      <StyledWrapper>
-        <StyledImage alt="Product" src={src} />
-        <StyledDetail color={theme.colors.warranty.headerColor}>
+      <Grid>
+        <ImgWrapper>
+          <StyledImage alt="Product" src={src} />
+        </ImgWrapper>
+        <StyledDetail
+          alignText
+          gridStart={3}
+          color={theme.colors.warranty.headerColor}
+        >
           <StyledPropertyName>Expiration Date</StyledPropertyName>
           <StyledPropertyValue>
-            {dayjs(EndDate).format("DD/YY/MM")}
+            {dayjs(EndDate).format("DD/MM/YY")}
           </StyledPropertyValue>
         </StyledDetail>
-      </StyledWrapper>
-      <StyledDetailsContainer>
         <StyledDetail>
           <StyledPropertyName>Product Type</StyledPropertyName>
           <StyledPropertyValue>{warrantyType}</StyledPropertyValue>
@@ -64,7 +68,7 @@ export const Card: React.FC<CardProps> = ({
           <StyledPropertyName>Model</StyledPropertyName>
           <StyledPropertyValue>{model}</StyledPropertyValue>
         </StyledDetail>
-      </StyledDetailsContainer>
+      </Grid>
     </CardTemplate>
   );
 };

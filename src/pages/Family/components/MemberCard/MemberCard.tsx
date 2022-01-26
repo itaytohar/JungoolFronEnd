@@ -6,7 +6,6 @@ import {
   NumberContainer,
   StyledLabel,
   StyledNumber,
-  Wrapper,
 } from "./style";
 import task from "../../../../assets/icons/task.svg";
 
@@ -23,10 +22,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 }) => {
   return (
     <Container>
-      <Wrapper>
-        <StyledIcon src={task} />
-        <StyledLabel>{fullName}</StyledLabel>
-      </Wrapper>
+      <StyledLabel>{fullName}</StyledLabel>
       <ImgContainer>
         <Image src={require(`../../../../assets/images/family/${url}.png`)} />
         <NumberContainer>

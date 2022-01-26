@@ -1,11 +1,8 @@
-import { SyncLoader } from "react-spinners";
 import { useTheme } from "styled-components";
 import { ThemeType } from "../../global-styles/theme";
 import { Container, LoaderCircle, LoaderContainer } from "./style";
 
 export const Loader: React.FC = () => {
-  const theme = useTheme() as ThemeType;
-
   const containerVariants = {
     start: {
       transition: {
@@ -36,9 +33,10 @@ export const Loader: React.FC = () => {
     },
   };
 
-  const loadingCircleTranstion = {
+  const loadingCircleTranstion: any = {
     duration: 0.5,
-    yoyo: Infinity,
+    repeatType: "mirror",
+    repeat: Infinity,
     ease: "easeInOut",
   };
 

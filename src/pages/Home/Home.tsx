@@ -135,13 +135,18 @@ export const Home: React.FC = () => {
               colors: theme.colors.smartPick.graphColors,
             }}
             firstContent={{
-              text: "packages",
-              subHeader: "smart pick",
+              text: "",
+              subHeader: "SMART COLLECT",
               color: theme.colors.smartPick.headerColor,
             }}
             secondContent={{
               text: smartPick
-                ? `will be the ideal time to pick ${smartPick.pickPackages} OUT of ${smartPick.allPackages} packages. \n${smartPick.pickingAddress}.`
+                ? `is the ideal time to pick ${smartPick.pickPackages} of ${
+                    smartPick.allPackages
+                  } packages from ${
+                    smartPick.pickingAddress.charAt(0).toUpperCase() +
+                    smartPick.pickingAddress.slice(1)
+                  }.`
                 : `No Packages yet`,
               subHeader: smartPick
                 ? dayjs(smartPick.bestPickingDate).format("dddd YY/MM")
@@ -161,13 +166,13 @@ export const Home: React.FC = () => {
             }}
             firstContent={{
               subHeader: "plan renewal",
-              text: "Subsciptions",
+              text: "",
               color: theme.colors.renewalPlans.headerColor,
             }}
             secondContent={{
               subHeader: ``,
               text: planRenewal
-                ? `${planRenewal.renewalCount} plans are waiting this month for renewal.`
+                ? `${planRenewal.renewalCount} plans are up for renewal within the next 14 days.`
                 : "No Plans yet",
               color: theme.colors.renewalPlans.contentColor,
             }}
@@ -193,7 +198,7 @@ export const Home: React.FC = () => {
             }}
             secondContent={{
               text: warrantyExpiration
-                ? `${warrantyExpiration.expiredCount} upcoming expirations in the next month.`
+                ? `${warrantyExpiration.expiredCount} warranties about to expire within 14 days.`
                 : "No Warranties yet",
               subHeader: "",
               color: theme.colors.warranty.contentColor,

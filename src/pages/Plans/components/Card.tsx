@@ -2,12 +2,12 @@ import { CardTemplate } from "../../../Shared/CardTemplate/CardTemplate";
 import { Document } from "../style";
 import placeHolder from "../../../assets/images/placeholder.png";
 import {
+  Grid,
+  ImgWrapper,
   StyledDetail,
-  StyledDetailsContainer,
   StyledImage,
   StyledPropertyName,
   StyledPropertyValue,
-  StyledWrapper,
 } from "../../../Shared/styled-elements";
 import { useTheme } from "styled-components";
 import { ThemeType } from "../../../global-styles/theme";
@@ -37,25 +37,32 @@ export const Card: React.FC<CardProps> = ({
   const theme = useTheme() as ThemeType;
   return (
     <CardTemplate viewItem={<Document src={url} />}>
-      <StyledWrapper>
-        <StyledImage alt="Product" src={src} />
-        <StyledDetail color={theme.colors.renewalPlans.headerColor}>
+      <Grid>
+        <ImgWrapper>
+          <StyledImage alt="Product" src={src} />
+        </ImgWrapper>
+        <StyledDetail
+          gridStart={3}
+          alignText
+          color={theme.colors.renewalPlans.headerColor}
+        >
           <StyledPropertyName>Expiration Date</StyledPropertyName>
           <StyledPropertyValue>
-            {dayjs(EndDate).format("DD/YY/MM")}
+            {dayjs(EndDate).format("DD/MM/YY")}
           </StyledPropertyValue>
         </StyledDetail>
-      </StyledWrapper>
-      <StyledDetailsContainer>
-        <StyledDetail>
-          <StyledPropertyName>Service Provider: </StyledPropertyName>
+        <StyledDetail
+        gridStart={1}
+        gridEnd={3}
+        >
+          <StyledPropertyName>Service Provider </StyledPropertyName>
           <StyledPropertyValue>{serviceProvider}</StyledPropertyValue>
         </StyledDetail>
         <StyledDetail>
-          <StyledPropertyName>Monthly Cost: </StyledPropertyName>
+          <StyledPropertyName>Monthly Cost </StyledPropertyName>
           <StyledPropertyValue>{monthlyCost}</StyledPropertyValue>
         </StyledDetail>
-      </StyledDetailsContainer>
+      </Grid>
     </CardTemplate>
   );
 };

@@ -68,7 +68,7 @@ export const SmartPick: React.FC = () => {
   };
 
   return pickOrder ? (
-    <PreviewLayout header="SMART PICK">
+    <PreviewLayout header="SMART Collect">
       <>
         <PickUpSection
           adress={pickOrder.pickingAddress}

@@ -25,6 +25,7 @@ export const Image = styled.img`
 export const StyledLabel = styled.p`
   color: ${({ theme }) => theme.colors.smartPick.contentColor};
   margin-inline-start: 2px;
+  margin-block-end: 8px;
   font-size: 17px;
 `;
 export const StyledNumber = styled.p`
@@ -44,10 +45,4 @@ export const NumberContainer = styled.div`
   border-radius: 50%;
   width: 40px;
   height: 40px;
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
