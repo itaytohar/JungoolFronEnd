@@ -7,6 +7,7 @@ import { GlobalStyles } from "./global-styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./global-styles/theme";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

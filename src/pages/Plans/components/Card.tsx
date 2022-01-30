@@ -35,6 +35,7 @@ export const Card: React.FC<CardProps> = ({
     src = placeHolder;
   }
 
+
   const theme = useTheme() as ThemeType;
   return (
     <CardTemplate viewItem={<Document src={url} />}>

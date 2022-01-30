@@ -14,12 +14,13 @@ import { Icon } from "../../../../Shared/Icon/Icon";
 export const CheckedBox: React.FC<{
   onClose: () => any;
   onCheck: () => any;
-}> = ({ onClose, onCheck }) => (
+  text: string;
+}> = ({ text ,onClose, onCheck }) => (
   <Wrapper>
     <ImageContaier>
       <StyledImg src={logo} />
     </ImageContaier>
-    <StyledText>Are you sure the task was completed?</StyledText>
+    <StyledText>{text}</StyledText>
     <IconsContainer>
       <Icon size="lg" onClick={() => onCheck()} url={accept} />
       <Icon size="lg" onClick={() => onClose()} url={cancel} />

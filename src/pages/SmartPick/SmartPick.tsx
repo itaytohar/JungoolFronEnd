@@ -81,7 +81,11 @@ export const SmartPick: React.FC = () => {
         </OrdersContainer>
       </>
       <Modal isOpen={isModalOpen} onClose={onClose}>
-        <CheckedBox onClose={onClose} onCheck={onCheck} />
+        <CheckedBox
+          text={"Are you sure the\n task was completed?"}
+          onClose={onClose}
+          onCheck={onCheck}
+        />
       </Modal>
     </PreviewLayout>
   ) : (

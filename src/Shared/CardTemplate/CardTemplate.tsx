@@ -10,6 +10,9 @@ import renew from "../../assets/icons/renew.svg";
 import view from "../../assets/icons/view.svg";
 import person from "../../assets/icons/person.svg";
 import { Icon } from "../Icon/Icon";
+import { Modal } from "../../pages/SmartPick/components/Modal/Modal";
+import ReactGA from "react-ga";
+import { CheckedBox } from "../../pages/SmartPick/components/CheckedBox/CheckedBox";
 
 interface CardTemplate {
   isWarranty?: boolean;
@@ -21,7 +24,11 @@ export const CardTemplate: React.FC<CardTemplate> = ({
   isWarranty = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFixOpen, setIsFixOpen] = useState(false);
+  const [isRenewOpen, setIsRenewOpen] = useState(false);
   const navigate = useNavigate();
+  const eventString =
+    "Clicked Renewal in " + (isWarranty ? " Warranties" : " Plans");
   return (
     <>
       <CardContainer>
@@ -38,12 +45,46 @@ export const CardTemplate: React.FC<CardTemplate> = ({
             onClick={() => navigate("/family")}
           />
           <Icon
-            tooltip={`Renew ${isWarranty ? "Warranty" : "Plan"}`}
             url={renew}
             text={"Renew"}
+            onClick={() => setIsRenewOpen(true)}
           />
-          {isWarranty && <Icon tooltip="Fix" url={fix} text="Fix" />}
+          {isWarranty && (
+            <Icon url={fix} text="Fix" onClick={() => setIsFixOpen(true)} />
+          )}
         </IconsContainer>
+        <Modal isOpen={isRenewOpen} onClose={() => setIsRenewOpen(false)}>
+          <CheckedBox
+            text={
+              isWarranty
+                ? "Would a REMINDER for an \nautomatic warranty renewal\n interest you?"
+                : `Would a REMINDER to renew\n your subscription and automatic\n connection to the service provider\n interest you?`
+            }
+            onCheck={() => {
+              ReactGA.event({
+                category: "Clicked Coming Feature",
+                action: eventString,
+              });
+              setIsRenewOpen(false);
+            }}
+            onClose={() => setIsRenewOpen(false)}
+          />
+        </Modal>
+        <Modal isOpen={isFixOpen} onClose={() => setIsFixOpen(false)}>
+          <CheckedBox
+            text={
+              "Would a connection to your\n warranty fix service provider\n interest you?"
+            }
+            onCheck={() => {
+              ReactGA.event({
+                category: "Clicked Coming Feature",
+                action: "Clicked Fix in Warranties",
+              });
+              setIsFixOpen(false);
+            }}
+            onClose={() => setIsFixOpen(false)}
+          />
+        </Modal>
       </CardContainer>
       <Collapsed isOpen={isOpen} viewItem={viewItem} />
     </>
