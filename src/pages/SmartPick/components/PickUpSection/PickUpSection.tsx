@@ -38,7 +38,7 @@ export const PickUpSection: React.FC<IPickUpSection> = ({
         <StyledDetail>
           <StyledPropertyName>ETA</StyledPropertyName>
           <StyledPropertyValue>
-            {dayjs(eta).format("dddd MM/YY")}
+            {dayjs(eta).format("dddd DD/MM/YY")}
           </StyledPropertyValue>
         </StyledDetail>
         <StyledDetail>

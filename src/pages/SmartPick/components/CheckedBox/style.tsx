@@ -16,9 +16,8 @@ export const ImageContaier = styled.div`
 `;
 
 export const StyledText = styled.p`
-  height: 13%;
+  white-space: pre;
   text-align: center;
-  width: 65%;
   color: ${({ theme }) => theme.colors.previewHeaderBackground};
 `;
 
@@ -30,7 +29,7 @@ export const StyledImg = styled.img`
 
 export const IconsContainer = styled.div`
   display: flex;
-  margin-block-start: 12px ;
+  margin-block-start: 12px;
   width: 60%;
   align-items: flex-start;
   justify-content: space-around;
