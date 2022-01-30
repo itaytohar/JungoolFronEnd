@@ -55,16 +55,14 @@ export const SmartPick: React.FC = () => {
     axios({
       method: "PATCH",
       url: updateURL,
-      params: {
-        insightID: params.insightID,
-        customerID: customer,
-        status: 3,
+      data: {
+        InsightID: params.insightID,
+        CustomerID: customer,
+        StatusID: 3,
       },
-    }).then((res) => {
-      if (res.data === "OK") onClose();
-      else console.log(res);
-    });
-    navigate(`/home/${customer}`);
+    })
+      .then(() => navigate(`/home/${customer}`))
+      .catch(() => navigate(`/home/${customer}`));
   };
 
   return pickOrder ? (
