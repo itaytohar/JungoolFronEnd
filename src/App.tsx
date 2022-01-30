@@ -1,8 +1,9 @@
 import { routes } from "./routes";
 import { Routes, Route } from "react-router-dom";
 import { CustomerContext } from "./CustomerContext";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ReactGA from "react-ga";
+ReactGA.initialize("UA-218984193-1");
 
 const App: React.FC = () => {
   const [customer, setCustomer] = useState<string | null>(null);
@@ -11,8 +12,9 @@ const App: React.FC = () => {
     () => ({ customer, setCustomer }),
     [customer, setCustomer]
   );
-
-  ReactGA.initialize("301726107");
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   return (
     <CustomerContext.Provider value={providerVal}>
