@@ -149,7 +149,7 @@ export const Home: React.FC = () => {
                   }.`
                 : `No Packages yet`,
               subHeader: smartPick
-                ? dayjs(smartPick.bestPickingDate).format("dddd YY/MM")
+                ? dayjs(smartPick.bestPickingDate).format("dddd MM/YY")
                 : ``,
               color: theme.colors.smartPick.contentColor,
             }}

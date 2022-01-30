@@ -34,6 +34,7 @@ export const Card: React.FC<CardProps> = ({
   } catch (err) {
     src = placeHolder;
   }
+
   const theme = useTheme() as ThemeType;
   return (
     <CardTemplate viewItem={<Document src={url} />}>
@@ -51,10 +52,7 @@ export const Card: React.FC<CardProps> = ({
             {dayjs(EndDate).format("DD/MM/YY")}
           </StyledPropertyValue>
         </StyledDetail>
-        <StyledDetail
-        gridStart={1}
-        gridEnd={3}
-        >
+        <StyledDetail gridStart={1} gridEnd={3}>
           <StyledPropertyName>Service Provider </StyledPropertyName>
           <StyledPropertyValue>{serviceProvider}</StyledPropertyValue>
         </StyledDetail>

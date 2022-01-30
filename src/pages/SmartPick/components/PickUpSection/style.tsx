@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledPaper = styled.div`
   display: flex;
   background-color: ${({theme})=> theme.colors.smartPick.backgroundColor};
-  height: 200px;
+  height: 150px;
   width: 100%;
   padding: 8px 16px;
   justify-content: space-around;
