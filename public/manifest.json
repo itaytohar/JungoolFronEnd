@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "JUNGOOL. Get things Done.",
+  "name": "JUNGOOL. Get things Done.",
+  "description": "Welcome to JUNGOOL. Your “Get Things Done” experience in the day to day Jungle.\n Jungool provides you real-time alerts and CTA related to service providers and helps you “Get things Done” easily, save money, time and provide you peace of mind."
+  ,
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +20,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/home",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
