@@ -54,7 +54,7 @@ export const Warranty: React.FC = () => {
   }, [params, warranty, setCustomer, setStorageCustomer]);
 
   return  warranty ? (
-    <PreviewLayout header="my warranty"  customer={customer}>
+    <PreviewLayout header="my warranty"  customer={warranty.customerID}>
       <List>
         {  warranty.warranties.map(({ warrantyID, ...warrantyProps }) => (
             <Card key={warrantyID} {...warrantyProps} />
