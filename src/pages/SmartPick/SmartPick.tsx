@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { ThemeType } from "../../global-styles/theme";
@@ -12,6 +12,8 @@ import { Modal } from "./components/Modal/Modal";
 import { OrderCard } from "./components/OrderCard/OrderCard";
 import { PickUpSection } from "./components/PickUpSection/PickUpSection";
 import { OrdersContainer } from "./style";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { CustomerContext } from "../../CustomerContext";
 
 export const SmartPick: React.FC = () => {
   const params = useParams();
@@ -19,6 +21,7 @@ export const SmartPick: React.FC = () => {
   interface IPickOrder {
     bestPickingDate: string;
     insightID: string;
+    customerID: string;
     orders: {
       orderID: string;
       trackingID: string;
@@ -32,7 +35,8 @@ export const SmartPick: React.FC = () => {
 
   const [pickOrder, setPickOrder] = useState<IPickOrder | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { customer } = useGetCustomer();
+  const { customer, setCustomer } = useContext(CustomerContext);
+  const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   useEffect(() => {
     let isMounted = true;
@@ -43,6 +47,9 @@ export const SmartPick: React.FC = () => {
         insightID: params.insightID,
       },
     }).then((res) => isMounted && setPickOrder(res.data));
+
+    setCustomer(pickOrder.customerID);
+    setStorageCustomer(pickOrder.customerID);
 
     return () => {
       isMounted = false;
