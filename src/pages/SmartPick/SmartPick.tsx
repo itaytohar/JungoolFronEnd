@@ -48,10 +48,11 @@ export const SmartPick: React.FC = () => {
       },
     }).then((res) => isMounted && setPickOrder(res.data));
 
-    if (!pickOrder.customerID) return;
-    
-    setCustomer(pickOrder.customerID);
-    setStorageCustomer(pickOrder.customerID);
+    if (pickOrder && pickOrder.customerID) 
+    {
+        setCustomer(pickOrder.customerID);
+        setStorageCustomer(pickOrder.customerID);
+    }
     
     return () => {
       isMounted = false;
