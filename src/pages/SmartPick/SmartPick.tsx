@@ -35,7 +35,7 @@ export const SmartPick: React.FC = () => {
 
   const [pickOrder, setPickOrder] = useState<IPickOrder | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [ customer, setCustomer ] = useContext(CustomerContext);
+  const [customer, setCustomer ] = useState<string | null>(null);
   const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   useEffect(() => {
