@@ -35,7 +35,7 @@ export const SmartPick: React.FC = () => {
 
   const [pickOrder, setPickOrder] = useState<IPickOrder | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [customer, setCustomer ] = useState<string | null>(null);
+  const { customer, setCustomer } = useContext(CustomerContext);
   const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   useEffect(() => {
@@ -48,15 +48,15 @@ export const SmartPick: React.FC = () => {
       },
     }).then((res) => isMounted && setPickOrder(res.data));
 
-    if (pickOrder)
-    {
-      setCustomer(pickOrder.customerID);
-      setStorageCustomer(pickOrder.customerID);
-    }
+    if (!pickOrder.customerID) return;
+    
+    setCustomer(pickOrder.customerID);
+    setStorageCustomer(pickOrder.customerID);
+    
     return () => {
       isMounted = false;
     };
-  }, [params]);
+  }, [params, setCustomer, setStorageCustomer , pickOrder]);
 
   const onClose = () => setIsModalOpen(false);
 
