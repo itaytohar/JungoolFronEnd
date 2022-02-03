@@ -66,7 +66,7 @@ export const Family: React.FC = () => {
   }, [customer]);
 
   return family ? (
-    <PreviewLayout header="FAMILY TASKS" bgc="white">
+      <PreviewLayout header="FAMILY TASKS" bgc="white" isFamily>
       <GridContainer>
         {family.map(({ customerID, ...memberProps }) => {
           return <MemberCard key={customerID} {...memberProps} />;
