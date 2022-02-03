@@ -52,7 +52,7 @@ export const Plans: React.FC = () => {
   }, [params, plans, setCustomer, setStorageCustomer]);
 
   return plans ? (
-    <PreviewLayout header="my plans">
+    <PreviewLayout header="my plans" customer={customer}>
       <List>
         {plans.plans.map(({ planID, ...planProps }) => (
           <Card key={planID} {...planProps} />

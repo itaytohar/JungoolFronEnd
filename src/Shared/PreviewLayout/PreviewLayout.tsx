@@ -25,6 +25,7 @@ interface IPreviewLayout {
     isHome?: boolean;
     bgc?: string;
     isFamily?: boolean;
+    customer?: string;
 }
 
 export const PreviewLayout: React.FC<IPreviewLayout> = ({
@@ -33,6 +34,7 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
     isHome,
     bgc,
     isFamily,
+    customer
 }) => {
   const navigate = useNavigate();
   const headerArr = header.split(" ");

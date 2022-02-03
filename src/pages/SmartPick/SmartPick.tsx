@@ -76,7 +76,7 @@ export const SmartPick: React.FC = () => {
   };
 
   return pickOrder ? (
-    <PreviewLayout header="SMART Collect">
+    <PreviewLayout header="SMART Collect"  customer={customer}>
       <>
         <PickUpSection
           adress={pickOrder.pickingAddress}
