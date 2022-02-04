@@ -1,9 +1,24 @@
 {
   "short_name": "JUNGOOL. Get things Done.",
   "name": "JUNGOOL. Get things Done.",
-  "description": "Welcome to JUNGOOL. Your “Get Things Done” experience in the day to day Jungle.\n Jungool provides you real-time alerts and CTA related to service providers and helps you “Get things Done” easily, save money, time and provide you peace of mind."
+  "description": "Jungool provides you real-time alerts\n and CTA related to service providers\n and helps you “Get things Done” easily, save money, \ntime and provide you peace of mind."
   ,
   "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
     {
       "src": "logo192.png",
       "type": "image/png",
