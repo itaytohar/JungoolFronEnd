@@ -21,16 +21,20 @@ import {
 import { Icon } from "../Icon/Icon";
 
 interface IPreviewLayout {
-  header: string;
-  isHome?: boolean;
-  bgc?: string;
+    header: string;
+    isHome?: boolean;
+    bgc?: string;
+    isFamily?: boolean;
+    customer?: string;
 }
 
 export const PreviewLayout: React.FC<IPreviewLayout> = ({
-  header,
-  children,
-  isHome,
-  bgc,
+    header,
+    children,
+    isHome,
+    bgc,
+    isFamily,
+    customer
 }) => {
   const navigate = useNavigate();
   const headerArr = header.split(" ");
@@ -38,7 +42,7 @@ export const PreviewLayout: React.FC<IPreviewLayout> = ({
     <StyledLayout>
       <StyledHeaderWrapper>
         {!isHome && (
-          <BackButton onClick={() => navigate(-1)}>
+                  <BackButton onClick={() => (isFamily) ? navigate(-1) : navigate(`/home/${customer}`)}>
             <Icon url={back} />
           </BackButton>
         )}

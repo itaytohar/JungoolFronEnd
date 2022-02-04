@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { ThemeType } from "../../global-styles/theme";
@@ -8,10 +8,13 @@ import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
 import { List } from "../../Shared/CardTemplate/style";
 import { insightURL } from "../../varaibles";
 import { Card } from "./components/Card";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { CustomerContext } from "../../CustomerContext";
 
 export const Warranty: React.FC = () => {
   interface IWarranty {
     insightID: string;
+    customerID: string;
     warranties: {
       EndDate: string;
       model: string;
@@ -23,6 +26,8 @@ export const Warranty: React.FC = () => {
   }
 
   const [warranty, setWarranty] = useState<IWarranty | null>(null);
+  const { customer, setCustomer } = useContext(CustomerContext);
+  const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   const params = useParams();
 
@@ -37,13 +42,19 @@ export const Warranty: React.FC = () => {
     }).then((res) => {
       isMounted && setWarranty(res.data);
     });
-    return () => {
+
+      if (warranty && warranty.customerID) {
+
+      setCustomer(warranty.customerID);
+      setStorageCustomer(warranty.customerID);
+      }
+   return () => {
       isMounted = false;
     };
-  }, [params]);
+  }, [params, warranty, setCustomer, setStorageCustomer]);
 
   return  warranty ? (
-    <PreviewLayout header="my warranty">
+    <PreviewLayout header="my warranty"  customer={warranty.customerID}>
       <List>
         {  warranty.warranties.map(({ warrantyID, ...warrantyProps }) => (
             <Card key={warrantyID} {...warrantyProps} />

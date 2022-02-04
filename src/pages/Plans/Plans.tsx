@@ -1,15 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "../../Shared/Loader/Loader";
 import { PreviewLayout } from "../../Shared/PreviewLayout/PreviewLayout";
 import { List } from "../../Shared/CardTemplate/style";
 import { insightURL } from "../../varaibles";
 import { Card } from "./components/Card";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { CustomerContext } from "../../CustomerContext";
 
 export const Plans: React.FC = () => {
   interface IPlans {
     insightID: string;
+    customerID: string;
     plans: {
       EndDate: string;
       monthlyCost: string;
@@ -20,6 +23,8 @@ export const Plans: React.FC = () => {
   }
 
   const [plans, setPlans] = useState<IPlans | null>(null);
+  const { customer, setCustomer } = useContext(CustomerContext);
+  const [, setStorageCustomer] = useLocalStorage("customer", null);
 
   const params = useParams();
 
@@ -36,13 +41,18 @@ export const Plans: React.FC = () => {
       setPlans(res.data);
     });
 
+      if (plans && plans.customerID) {
+        setCustomer(plans.customerID);
+        setStorageCustomer(plans.customerID);
+      }
+
     return () => {
       isMounted = false;
     };
-  }, [params]);
+  }, [params, plans, setCustomer, setStorageCustomer]);
 
   return plans ? (
-    <PreviewLayout header="my plans">
+    <PreviewLayout header="my plans" customer={plans.customerID}>
       <List>
         {plans.plans.map(({ planID, ...planProps }) => (
           <Card key={planID} {...planProps} />
