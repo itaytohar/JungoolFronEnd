@@ -1,14 +1,14 @@
 export const communityURL =
-  "https://customercommunitydetails.azurewebsites.net/api/CustomerCommunityDetails?&code=O2etEjv8gINzzEtJ1GuA3wYJDJ8lL460bBvNUG0EGKn1i4nZmrXqAQ==";
+  "https://customercommunitydetails202202.azurewebsites.net/api/CustomerCommunityDetails?code=Ws0YgZnBEMweQ8Niz2Kp7nmfcy0bxRTdfyk3KXmsaXzRCCRqmxvmXw==";
 
 export const insightURL =
-  "https://insightdetails.azurewebsites.net/api/InsightDetails?&code=l/uRfVQrXeRc1In/LW54uGV/I84oaa1F3s6QN3HYJK8jgRbSvIDVTw==";
+  "https://insightdetails20220207135621.azurewebsites.net/api/InsightDetails?code=nEMfAibD56dtsOly085rHKKnVel7nF3Au2QmpCUlXgQr0cUxlflxqw==";
 
 export const updateURL =
-  "https://updatecustomerorderstatus2022.azurewebsites.net/api/UpdateOrderStatus?code=Y4nEJCqWbPKkRPzBXESwxvdgcantlBN2pagUalK3dRBwtGooK651Mw==";
+  "https://updatecustomerorderstatus202202.azurewebsites.net/api/UpdateOrderStatus?code=Tz8mBLx8aALD3qcOZZUzplBpyCcNDjS9BmeTRfvYNOXVKrhVYYfg6w==";
 
 export const homeURL =
-  "https://customerinsights2022.azurewebsites.net/api/CustomerInsights?&code=TXWMXm1kLEirvdjgp3Ko5N0jYwaYWBu1/E1Thrk7RY8xv8SIXOimzA==";
+  "https://customerinsights202203.azurewebsites.net/api/CustomerInsights?code=jhLa9eVkWLXHANbmobxFw5ssUtiI1OLqCqLqgVG0Ixy5Xdk7s0oCsw==";
 
 export const addOtherTaskURL =
-  "https://addothertasks20220119210536.azurewebsites.net/api/AddOtherTasks?code=LBC9z8Z6x/c0JBM2oDul/abaowCg/pf16Omx/AQRYC7PlMaCQQyMbg==";
+  "https://addothertasks202202.azurewebsites.net/api/AddOtherTasks?code=ZL5BtwdYuCgiw9J38xY5ceYV7fsLFoZItufYvtYEdExIpSG53rKmPA==";
