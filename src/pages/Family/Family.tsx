@@ -39,19 +39,20 @@ export const Family: React.FC = () => {
       members = [];
       const { community } = res.data;
       community.map((member: Member) => {
-        let url;
+          let url;
+          const imageCode = (+member.customerID % 7);
         switch (member.memberType) {
-          case "Father":
-            url = "father";
+            case "Father":
+                url = "man" + imageCode;
             break;
-          case "Son":
-            url = "son-" + Math.floor(Math.random() * 2);
+            case "Son":
+                url = "boy" + imageCode;
             break;
           case "Daughter":
-            url = "daughter-" + Math.floor(Math.random() * 3);
+                url = "girl" + imageCode;
             break;
           case "Mother":
-            url = "mother";
+                url = "woman" + imageCode;
             break;
         }
         member.url = url;
@@ -89,4 +90,4 @@ export const Family: React.FC = () => {
   ) : (
     <Loader />
   );
-};
+}; 
