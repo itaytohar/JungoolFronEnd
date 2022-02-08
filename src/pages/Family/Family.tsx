@@ -40,7 +40,7 @@ export const Family: React.FC = () => {
       const { community } = res.data;
       community.map((member: Member) => {
           let url;
-          let imageCode = (+member.customerID % 7);
+          const imageCode = (+member.customerID % 7);
         switch (member.memberType) {
             case "Father":
                 url = "man" + imageCode;
