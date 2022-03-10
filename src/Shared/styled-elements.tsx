@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-
+// temp
 export const StyledImage = styled.img`
   object-fit: contain;
   height: 60px;
